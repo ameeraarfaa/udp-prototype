@@ -44,7 +44,58 @@ export function buildSidebar() {
             </div>
           </div>
         </div>
-        <!-- Economic, Infrastructure, Community, Social omitted for brevity -->
+        <!-- Economic -->
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#economic-collapse">
+              Economic <span class="ms-auto text-muted" title="Economic factors.">🛈</span>
+            </button>
+          </h2>
+          <div id="economic-collapse" class="accordion-collapse collapse" data-bs-parent="#parameterAccordion">
+            <div class="accordion-body text-muted fst-italic">
+              Subparameters to be added here
+            </div>
+          </div>
+        </div>
+        <!-- Infrastructure -->
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#infra-collapse">
+              Infrastructure <span class="ms-auto text-muted" title="Infrastructure factors.">🛈</span>
+            </button>
+          </h2>
+          <div id="infra-collapse" class="accordion-collapse collapse" data-bs-parent="#parameterAccordion">
+            <div class="accordion-body text-muted fst-italic">
+              Subparameters to be added here
+            </div>
+          </div>
+        </div>
+        <!-- Community -->
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#community-collapse">
+              Community <span class="ms-auto text-muted" title="Community factors.">🛈</span>
+            </button>
+          </h2>
+          <div id="community-collapse" class="accordion-collapse collapse" data-bs-parent="#parameterAccordion">
+            <div class="accordion-body text-muted fst-italic">
+              Subparameters to be added here
+            </div>
+          </div>
+        </div>
+        <!-- Social -->
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#social-collapse">
+              Social <span class="ms-auto text-muted" title="Social factors.">🛈</span>
+            </button>
+          </h2>
+          <div id="social-collapse" class="accordion-collapse collapse" data-bs-parent="#parameterAccordion">
+            <div class="accordion-body text-muted fst-italic">
+              Subparameters to be added here
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <button id="download-map" class="btn btn-secondary w-100 mt-4" disabled> Export Map (.jpeg)</button>
@@ -59,6 +110,12 @@ export function buildSidebar() {
     input.addEventListener("change", () => {
       const key = input.dataset.layer;
       const checked = input.checked;
+      if (key === "water") {
+        // Temporary handling of dist. to water layer
+        updateCompositeLayer();
+        updateExportButtonState();
+        return;
+      }
       if (checked) {
         map.addLayer(subparameterLayers[key]);
       } else {
