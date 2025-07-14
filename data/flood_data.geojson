@@ -1,0 +1,549 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.696,
+          3.1476
+        ]
+      },
+      "properties": {
+        "location": "Jalan/Lebuhraya\nutama Kuala\nLumpur",
+        "date": "7/3/2022",
+        "depth_range": "0.1-0.5",
+        "avg_depth": 0.3
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.6978,
+          3.0857
+        ]
+      },
+      "properties": {
+        "location": "Lebuhraya\nBesraya-\nPersimpangan\nKuchai",
+        "date": "7/3/2023",
+        "depth_range": "0.1-1.5",
+        "avg_depth": 0.8
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.6649,
+          3.0666
+        ]
+      },
+      "properties": {
+        "location": "Lebuhraya\nKESAS-Tol\nAwan Besar",
+        "date": "7/3/2024",
+        "depth_range": "0.1-0.5",
+        "avg_depth": 0.3
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.72,
+          3.1602
+        ]
+      },
+      "properties": {
+        "location": "Underpass\nJalan Tun\nRazak-Intermark",
+        "date": "7/3/2025",
+        "depth_range": "0.1-0.3",
+        "avg_depth": 0.2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.7158,
+          3.1292
+        ]
+      },
+      "properties": {
+        "location": "Terowong Jalan\nChan Sow Lin",
+        "date": "7/3/2026",
+        "depth_range": "0.1-0.3",
+        "avg_depth": 0.2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.6889,
+          3.1276
+        ]
+      },
+      "properties": {
+        "location": "Jalan Syed\nPutra",
+        "date": "7/3/2027",
+        "depth_range": "0.1-0.5",
+        "avg_depth": 0.3
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.7042,
+          3.0605
+        ]
+      },
+      "properties": {
+        "location": "Lebuhraya KL-\nSeremban",
+        "date": "7/3/2028",
+        "depth_range": "0.1-0.3",
+        "avg_depth": 0.2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.7253,
+          3.1269
+        ]
+      },
+      "properties": {
+        "location": "Jalan Cheras",
+        "date": "7/3/2029",
+        "depth_range": "0.1-0.3",
+        "avg_depth": 0.2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.6893,
+          3.1505
+        ]
+      },
+      "properties": {
+        "location": "Jalan Parlimen",
+        "date": "7/3/2030",
+        "depth_range": "0.1-0.3",
+        "avg_depth": 0.2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.7209,
+          3.1888
+        ]
+      },
+      "properties": {
+        "location": "Jalan Air Keroh,\nAir Panas,\nSetapak",
+        "date": "7/3/2031",
+        "depth_range": "0.1-0.3",
+        "avg_depth": 0.2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.6971,
+          3.1499
+        ]
+      },
+      "properties": {
+        "location": "Sekitar Leboh\nAmpang-LRT\nMasjid Jamek",
+        "date": "7/3/2032",
+        "depth_range": "0.1-0.3",
+        "avg_depth": 0.2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.6971,
+          3.083
+        ]
+      },
+      "properties": {
+        "location": "Taman Salak\nSelatan",
+        "date": "7/3/2033",
+        "depth_range": "0.1-0.5",
+        "avg_depth": 0.3
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.7295,
+          3.1523
+        ]
+      },
+      "properties": {
+        "location": "Taman U-\nThant,Jalan\nAmpang",
+        "date": "7/3/2034",
+        "depth_range": "0.1-0.5",
+        "avg_depth": 0.3
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.6892,
+          3.0635
+        ]
+      },
+      "properties": {
+        "location": "Taman Sri\nPetaling",
+        "date": "7/3/2035",
+        "depth_range": "0.1-0.5",
+        "avg_depth": 0.3
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.7199,
+          3.1288
+        ]
+      },
+      "properties": {
+        "location": "Taska Roskani\nJKR, Jalan Batu\n2 1/2 Cheras",
+        "date": "7/3/2036",
+        "depth_range": "0.1-0.5",
+        "avg_depth": 0.3
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.7199,
+          3.1621
+        ]
+      },
+      "properties": {
+        "location": "Jlan Raja Muda\nMusa, Kampung\nBaru",
+        "date": "7/3/2037",
+        "depth_range": "0.1-0.3",
+        "avg_depth": 0.2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.7054,
+          3.1621
+        ]
+      },
+      "properties": {
+        "location": "Jalan Raja\nMuda Musa,\nKampung Baru",
+        "date": "7/3/2038",
+        "depth_range": "0.1-0.3",
+        "avg_depth": 0.2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.6998,
+          3.1628
+        ]
+      },
+      "properties": {
+        "location": "Kampung\nPeriuk,\nKampung Baru",
+        "date": "7/3/2039",
+        "depth_range": "0.1-0.5",
+        "avg_depth": 0.3
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.6679,
+          3.0851
+        ]
+      },
+      "properties": {
+        "location": "Kampung Pasir\nBaru",
+        "date": "7/3/2040",
+        "depth_range": "0.1-0.5",
+        "avg_depth": 0.3
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.7139,
+          3.1716
+        ]
+      },
+      "properties": {
+        "location": "Sekitar Kolej\nTelekom",
+        "date": "7/3/2041",
+        "depth_range": "0.1-0.5",
+        "avg_depth": 0.3
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.7125,
+          3.1518
+        ]
+      },
+      "properties": {
+        "location": "Kawasan\nParking Wisma\nOUG\nberhampiran\nPavilion",
+        "date": "7/3/2042",
+        "depth_range": "0.1-1.5",
+        "avg_depth": 0.8
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.9729,
+          3.153
+        ]
+      },
+      "properties": {
+        "location": "Jalan Tuanku\nAbdul Halim",
+        "date": "25/4/2022",
+        "depth_range": "0.3-1.0",
+        "avg_depth": 0.65
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.6845,
+          3.1386
+        ]
+      },
+      "properties": {
+        "location": "Lebuhraya\nSultan Iskandar",
+        "date": "25/4/2023",
+        "depth_range": "0.3-1.0",
+        "avg_depth": 0.65
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.6853,
+          3.136
+        ]
+      },
+      "properties": {
+        "location": "Jalan Traves",
+        "date": "25/4/2024",
+        "depth_range": "0.3-1.0",
+        "avg_depth": 0.65
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.9695,
+          3.1498
+        ]
+      },
+      "properties": {
+        "location": "Jalan Melaka",
+        "date": "25/4/2024",
+        "depth_range": "0.3-1.0",
+        "avg_depth": 0.65
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.6821,
+          3.1746
+        ]
+      },
+      "properties": {
+        "location": "Jalan Kuching",
+        "date": "25/4/2025",
+        "depth_range": "0.3-1.0",
+        "avg_depth": 0.65
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.6599,
+          3.1863
+        ]
+      },
+      "properties": {
+        "location": "Segambut\nDalam",
+        "date": "25/4/2026",
+        "depth_range": "0.3-1.0",
+        "avg_depth": 0.65
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.6599,
+          3.1863
+        ]
+      },
+      "properties": {
+        "location": "Jalan Segambut",
+        "date": "25/4/2027",
+        "depth_range": "0.3-0.6",
+        "avg_depth": 0.44999999999999996
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.6586,
+          3.1877
+        ]
+      },
+      "properties": {
+        "location": "Segambut\nBahagia",
+        "date": "25/4/2028",
+        "depth_range": "0.3-1.0",
+        "avg_depth": 0.65
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.691,
+          3.1506
+        ]
+      },
+      "properties": {
+        "location": "Jalan Parlimen",
+        "date": "25/4/2029",
+        "depth_range": "0.3-0.6",
+        "avg_depth": 0.44999999999999996
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.6825,
+          3.1778
+        ]
+      },
+      "properties": {
+        "location": "Jalan Kasipillay",
+        "date": "25/4/2030",
+        "depth_range": "0.3-0.6",
+        "avg_depth": 0.44999999999999996
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.6994,
+          3.1623
+        ]
+      },
+      "properties": {
+        "location": "Kampung\nPeriuk,\nKampung Baru",
+        "date": "25/4/2032",
+        "depth_range": "0.3-0.6",
+        "avg_depth": 0.44999999999999996
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.6991,
+          3.1486
+        ]
+      },
+      "properties": {
+        "location": "Jalan Raja\nChulan",
+        "date": "25/4/2033",
+        "depth_range": "0.3-0.6",
+        "avg_depth": 0.44999999999999996
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.7099,
+          3.1455
+        ]
+      },
+      "properties": {
+        "location": "Jalan Pudu",
+        "date": "25/4/2034",
+        "depth_range": "0.3-1.0",
+        "avg_depth": 0.65
+      }
+    }
+  ]
+}

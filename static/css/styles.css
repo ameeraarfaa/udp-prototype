@@ -1,0 +1,30 @@
+body, html {
+  height: 100%;
+  margin: 0;
+}
+
+#map {
+  position: absolute;
+  top: 0;
+  left: 300px;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+#sidebar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 300px;
+  height: 100%;
+  background: #f8f9fa;
+  padding: 1rem;
+  overflow-y: auto;
+  z-index: 1000;
+  border-right: 1px solid #ddd;
+}
+
+.accordion-button span {
+  font-size: 0.9rem;
+}

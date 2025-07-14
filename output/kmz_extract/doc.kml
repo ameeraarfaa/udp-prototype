@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://www.opengis.net/kml/2.2 http://schemas.opengis.net/kml/2.2.0/ogckml22.xsd http://www.google.com/kml/ext/2.2 http://code.google.com/apis/kml/schema/kml22gx.xsd">
+<Document id="KL_LST2025_Clip">
+  <name>KL_LST2025_Clip</name>
+  <snippet></snippet>
+  <GroundOverlay id="ID_0">
+    <name>KL_LST2025_Clip</name>
+    <snippet></snippet>
+    <drawOrder>1000</drawOrder>
+    <Icon>
+      <href>Layer0.png</href>
+      <viewBoundScale>1.0</viewBoundScale>
+    </Icon>
+    <LatLonBox>
+      <north>3.174396645025634</north>
+      <south>3.121411961229557</south>
+      <east>101.7228295528681</east>
+      <west>101.6771131438013</west>
+      <rotation>0</rotation>
+    </LatLonBox>
+  </GroundOverlay>
+</Document>
+</kml>
