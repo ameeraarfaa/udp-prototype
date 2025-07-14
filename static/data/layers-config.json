@@ -1,0 +1,24 @@
+[
+  {
+    "key": "flood",
+    "type": "geojson",
+    "source": "static/data/flood_data.geojson",
+    "label": "Flood",
+    "color": "blue"
+  },
+  {
+    "key": "lst",
+    "type": "image",
+    "source": "output/lst_overlay.png",
+    "label": "Land Surface Temp",
+    "opacity": 0.5
+  },
+  {
+    "key": "water",
+    "type": "rectangle",
+    "bounds": [[3.12, 101.67], [3.14, 101.69]],
+    "label": "Dist. to Water",
+    "color": "#006400",
+    "fillOpacity": 0.4
+  }
+]

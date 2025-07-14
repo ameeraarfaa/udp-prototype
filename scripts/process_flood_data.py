@@ -58,7 +58,7 @@ geojson = {
     "features": features
 }
 
-output_path = '../data/flood_data.geojson'
+output_path = '../static/data/flood_data.geojson'
 os.makedirs(os.path.dirname(output_path), exist_ok=True)
 
 with open(output_path, 'w') as f:
