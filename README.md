@@ -11,12 +11,12 @@ udp-climate-prototype/
 ├── scripts/             # Python scripts for data processing
 ├── static/
 │   ├── css/
-│   ├── js/              # Modular JavaScript files
+│   ├── js/              # JavaScript files
 │   └── data/            # Processed data (GeoJSON, config)
 ├── map.html             # Main HTML file
 ├── requirements.txt     # Python dependencies
 ├── generate_data.bat    # Batch file to automate data processing
-└── README.md            # Project documentation
+└── README.md            # Documentation
 ```
 
 ## Setup & Usage
@@ -34,9 +34,8 @@ generate_data.bat
 This will run all necessary Python scripts in the `scripts/` folder and output files to `static/data/`.
 
 ### 3. Start the Web Server
-```
-python -m http.server  
-```
+Serve the project using your preferred static server or framework (Flask, Django, etc.). Ensure the `static/` folder is accessible.
+
 ### 4. Open the App
 Open `map.html` in your browser. The map and sidebar will load dynamically from config and data files.
 

@@ -44,40 +44,40 @@ export function buildSidebar() {
             </div>
           </div>
         </div>
-        <!-- Economic -->
+        <!-- Economy-->
         <div class="accordion-item">
           <h2 class="accordion-header">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#economic-collapse">
-              Economic <span class="ms-auto text-muted" title="Economic factors.">🛈</span>
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#economy-collapse">
+              Economy <span class="ms-auto text-muted" title="Economy factors.">🛈</span>
             </button>
           </h2>
-          <div id="economic-collapse" class="accordion-collapse collapse" data-bs-parent="#parameterAccordion">
+          <div id="economy-collapse" class="accordion-collapse collapse" data-bs-parent="#parameterAccordion">
             <div class="accordion-body text-muted fst-italic">
               Subparameters to be added here
             </div>
           </div>
         </div>
-        <!-- Infrastructure -->
+        <!-- Environment -->
         <div class="accordion-item">
           <h2 class="accordion-header">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#infra-collapse">
-              Infrastructure <span class="ms-auto text-muted" title="Infrastructure factors.">🛈</span>
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#environment-collapse">
+              Environment <span class="ms-auto text-muted" title="Environment factors.">🛈</span>
             </button>
           </h2>
-          <div id="infra-collapse" class="accordion-collapse collapse" data-bs-parent="#parameterAccordion">
+          <div id="environment-collapse" class="accordion-collapse collapse" data-bs-parent="#parameterAccordion">
             <div class="accordion-body text-muted fst-italic">
               Subparameters to be added here
             </div>
           </div>
         </div>
-        <!-- Community -->
+        <!-- Population -->
         <div class="accordion-item">
           <h2 class="accordion-header">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#community-collapse">
-              Community <span class="ms-auto text-muted" title="Community factors.">🛈</span>
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#population-collapse">
+              Population <span class="ms-auto text-muted" title="Population factors.">🛈</span>
             </button>
           </h2>
-          <div id="community-collapse" class="accordion-collapse collapse" data-bs-parent="#parameterAccordion">
+          <div id="population-collapse" class="accordion-collapse collapse" data-bs-parent="#parameterAccordion">
             <div class="accordion-body text-muted fst-italic">
               Subparameters to be added here
             </div>

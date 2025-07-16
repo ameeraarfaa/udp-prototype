@@ -64,4 +64,4 @@ os.makedirs(os.path.dirname(output_path), exist_ok=True)
 with open(output_path, 'w') as f:
     json.dump(geojson, f, indent=2)
 
-print(f"✅ GeoJSON saved to {output_path} with {len(features)} features.")
+print(f"GeoJSON saved to {output_path} with {len(features)} features.")
