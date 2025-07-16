@@ -38,7 +38,7 @@ This will run all necessary Python scripts in the `scripts/` folder and output f
 python -m http.server  
 ```
 ### 4. Open the App
-Open `map.html` in your browser. The map and sidebar will load dynamically from config and data files.
+Open `map.html` in your browser. (http://localhost:8000/map.html)
 
 ## Layer Management
 Layers are defined in `static/data/layers-config.json`. You can add, remove, or modify layers by editing this file. Supported types:
