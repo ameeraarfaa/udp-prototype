@@ -1,4 +1,5 @@
-// Map export functionality
+//Handles exporting of the visible map area as an image using html2canvas
+
 export function exportVisibleMap() {
   html2canvas(document.getElementById("map"), {
     useCORS: true

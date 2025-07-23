@@ -1,24 +1,25 @@
-// Main entry point for the modular JS app
-import { map, locations, initMap } from './map-init.js';
-import { buildSidebar } from './sidebar.js';
+import { initMap, getMap } from './map-init.js';
 import { loadLayersFromConfig } from './layer-controls.js';
-import { exportVisibleMap } from './export.js';
+import { setupSidebarUI } from './sidebar.js';
 
-async function initializeApp() {
-  await loadLayersFromConfig();
-  fetch('static/data/locations.json')
-    .then(res => res.json())
-    .then(data => {
-      locations.length = 0;
-      locations.push(...data);
-      initMap();
-      buildSidebar();
-      document.getElementById('download-map').addEventListener('click', exportVisibleMap);
-    })
-    .catch(err => {
-      console.error('Error loading locations.json:', err);
-      alert('Failed to load locations. Please check console.');
-    });
+async function initialiseApp() {
+  await initMap();
+
+  const map = getMap();
+  if (!map) {
+    console.error('Map failed to initialize.');
+    return;
+  }
+
+  map.on('load', async () => {
+    try {
+      await loadLayersFromConfig(map);
+      setupSidebarUI();
+    } catch (err) {
+      console.error('Error during app initialisation:', err); //Console log for debugging
+      alert('App failed to load completely. Check the console for details.');
+    }
+  });
 }
 
-initializeApp();
+window.addEventListener('DOMContentLoaded', initialiseApp);

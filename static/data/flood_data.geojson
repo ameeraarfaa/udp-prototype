@@ -6,6 +6,584 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          101.7404,
+          3.1027
+        ]
+      },
+      "properties": {
+        "location": "Lot 1593 Kg. Segambut Dalam",
+        "date": "14/2/2020",
+        "year": "2020",
+        "depth_range": "0.1-0.9",
+        "avg_depth": 0.5
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.7395,
+          3.0939
+        ]
+      },
+      "properties": {
+        "location": "Jalan Cheras berhadapan EkoCheras Mall",
+        "date": "29/4/2020",
+        "year": "2020",
+        "depth_range": "0.1-0.9",
+        "avg_depth": 0.5
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.697,
+          3.1499
+        ]
+      },
+      "properties": {
+        "location": "Jalan Melaka \u2013 Wisma Lee Rubber",
+        "date": "16/5/2020",
+        "year": "2020",
+        "depth_range": "0.1-0.6",
+        "avg_depth": 0.35
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.7395,
+          3.0939
+        ]
+      },
+      "properties": {
+        "location": "Jalan Cheras \u2013 EkoCheras Mall",
+        "date": "16/5/2020",
+        "year": "2020",
+        "depth_range": "0.1-0.6",
+        "avg_depth": 0.35
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.7152,
+          3.1731
+        ]
+      },
+      "properties": {
+        "location": "Kolej Telekom Jalan Semarak",
+        "date": "17/5/2020",
+        "year": "2020",
+        "depth_range": "0.1-0.6",
+        "avg_depth": 0.35
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.715,
+          3.1731
+        ]
+      },
+      "properties": {
+        "location": "Kolej Telekom Jalan Semarak",
+        "date": "12/6/2020",
+        "year": "2020",
+        "depth_range": "0.1-0.3",
+        "avg_depth": 0.2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.7393,
+          3.0962
+        ]
+      },
+      "properties": {
+        "location": "Jalan Cheras \u2013 Pusat Penjaja Desa Aman",
+        "date": "23/7/2020",
+        "year": "2020",
+        "depth_range": "0.1-0.3",
+        "avg_depth": 0.2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.7397,
+          3.0938
+        ]
+      },
+      "properties": {
+        "location": "Jalan Cheras \u2013 EkoCheras Mall",
+        "date": "23/7/2020",
+        "year": "2020",
+        "depth_range": "0.1-0.6",
+        "avg_depth": 0.35
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.741,
+          3.102
+        ]
+      },
+      "properties": {
+        "location": "a) Hospital Pantai Cheras",
+        "date": "2/9/2020",
+        "year": "2020",
+        "depth_range": "0.1-0.3",
+        "avg_depth": 0.2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.7399,
+          3.0928
+        ]
+      },
+      "properties": {
+        "location": "b) Jalan Cheras berhadapan EkoCheras Mall",
+        "date": "2/9/2020",
+        "year": "2020",
+        "depth_range": "0.1-0.9",
+        "avg_depth": 0.5
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.7501,
+          3.1061
+        ]
+      },
+      "properties": {
+        "location": "c) Jalan 9, Kg Cheras Baru",
+        "date": "2/9/2020",
+        "year": "2020",
+        "depth_range": "0.1-0.3",
+        "avg_depth": 0.2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.7201,
+          3.0796
+        ]
+      },
+      "properties": {
+        "location": "d) Jalan MRR2 berhampiran Bandar Tasik\nSelatan",
+        "date": "2/9/2020",
+        "year": "2020",
+        "depth_range": "0.1-0.6",
+        "avg_depth": 0.35
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.7153,
+          3.1724
+        ]
+      },
+      "properties": {
+        "location": "d) Jln Raja Chulan",
+        "date": "10/9/2020",
+        "year": "2020",
+        "depth_range": "0.1-0.9",
+        "avg_depth": 0.5
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.715,
+          3.173
+        ]
+      },
+      "properties": {
+        "location": "a) Kolej TM, Jln Semarak",
+        "date": "23/9/2020",
+        "year": "2020",
+        "depth_range": "0.1-0.3",
+        "avg_depth": 0.2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.7417,
+          3.1016
+        ]
+      },
+      "properties": {
+        "location": "Lorong Lobak,\nTaman Cheras",
+        "date": "13/4/2021",
+        "year": "2021",
+        "depth_range": "0.3",
+        "avg_depth": 0.3
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.7421,
+          3.1012
+        ]
+      },
+      "properties": {
+        "location": "Jalan Kaskas,\nTaman Cheras",
+        "date": "13/4/2021",
+        "year": "2021",
+        "depth_range": "0.3",
+        "avg_depth": 0.3
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.6835,
+          3.1799
+        ]
+      },
+      "properties": {
+        "location": "Taman Million\nJalan Ipoh",
+        "date": "13/4/2021",
+        "year": "2021",
+        "depth_range": "0.3",
+        "avg_depth": 0.3
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.7407,
+          3.1024
+        ]
+      },
+      "properties": {
+        "location": "Hadapan\nHospital Pantai\nCheras",
+        "date": "13/4/2021",
+        "year": "2021",
+        "depth_range": "0.5",
+        "avg_depth": 0.5
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.7303,
+          3.1118
+        ]
+      },
+      "properties": {
+        "location": "Jalan Serkut 1,\nTaman Permata\nCheras",
+        "date": "13/4/2021",
+        "year": "2021",
+        "depth_range": "0.3",
+        "avg_depth": 0.3
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.7396,
+          3.0935
+        ]
+      },
+      "properties": {
+        "location": "Jalan Cheras\nHadapan EKO\nCheras Mall",
+        "date": "13/4/2021",
+        "year": "2021",
+        "depth_range": "0.3",
+        "avg_depth": 0.3
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.7283,
+          3.114
+        ]
+      },
+      "properties": {
+        "location": "Jalan Cheras\nSusur Keluar Flat\nSri Sabah",
+        "date": "13/4/2021",
+        "year": "2021",
+        "depth_range": "0.5",
+        "avg_depth": 0.5
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.7045,
+          3.1072
+        ]
+      },
+      "properties": {
+        "location": "RC Residence\nSales Gallery",
+        "date": "13/4/2021",
+        "year": "2021",
+        "depth_range": "0.3",
+        "avg_depth": 0.3
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.6993,
+          3.1486
+        ]
+      },
+      "properties": {
+        "location": "Muzium\nTelekom Jalan\nRaja Chulan",
+        "date": "13/4/2021",
+        "year": "2021",
+        "depth_range": "0.3",
+        "avg_depth": 0.3
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.707,
+          3.1367
+        ]
+      },
+      "properties": {
+        "location": "Jalan Merlimau &\nJalan\nKenanga",
+        "date": "13/4/2021",
+        "year": "2021",
+        "depth_range": "0.3",
+        "avg_depth": 0.3
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.6992,
+          3.1387
+        ]
+      },
+      "properties": {
+        "location": "Monorail Jalan\nMaharajalela",
+        "date": "13/4/2021",
+        "year": "2021",
+        "depth_range": "0.3",
+        "avg_depth": 0.3
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.6972,
+          3.1489
+        ]
+      },
+      "properties": {
+        "location": "Lebuh Ampang",
+        "date": "13/4/2021",
+        "year": "2021",
+        "depth_range": "0.3",
+        "avg_depth": 0.3
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.7119,
+          3.0988
+        ]
+      },
+      "properties": {
+        "location": "Jalan Sri\nPermaisuri",
+        "date": "13/4/2021",
+        "year": "2021",
+        "depth_range": "0.3",
+        "avg_depth": 0.3
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.6717,
+          3.2234
+        ]
+      },
+      "properties": {
+        "location": "Tmn Wahyu -\nBulatan Batu\nCaves",
+        "date": "13/4/2021",
+        "year": "2021",
+        "depth_range": "0.3",
+        "avg_depth": 0.3
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.7234,
+          3.1023
+        ]
+      },
+      "properties": {
+        "location": "Hadapan HUKM,\nCheras",
+        "date": "13/4/2021",
+        "year": "2021",
+        "depth_range": "0.6",
+        "avg_depth": 0.6
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.7053,
+          3.1006
+        ]
+      },
+      "properties": {
+        "location": "Hadapan Balai\nPolis Salak\nSelatan",
+        "date": "13/4/2021",
+        "year": "2021",
+        "depth_range": "0.3",
+        "avg_depth": 0.3
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.7445,
+          3.0889
+        ]
+      },
+      "properties": {
+        "location": "Jalan Lemak\nTaman Segar",
+        "date": "13/4/2021",
+        "year": "2021",
+        "depth_range": "0.3",
+        "avg_depth": 0.3
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.6942,
+          3.1719
+        ]
+      },
+      "properties": {
+        "location": "Jalan Batu\nBata/Jalan Larut",
+        "date": "10/5/2021",
+        "year": "2021",
+        "depth_range": "0.1-0.3",
+        "avg_depth": 0.2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.6929,
+          3.1705
+        ]
+      },
+      "properties": {
+        "location": "Jalan Rahmat,\nPWTC",
+        "date": "10/5/2021",
+        "year": "2021",
+        "depth_range": "0.1",
+        "avg_depth": 0.1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.7011,
+          3.1925
+        ]
+      },
+      "properties": {
+        "location": "Kg Puah\nberhampiran\n(RWTP) Sungai\nBusuk",
+        "date": "7/11/2021",
+        "year": "2021",
+        "depth_range": "0.3",
+        "avg_depth": 0.3
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           101.696,
           3.1476
         ]
@@ -13,6 +591,7 @@
       "properties": {
         "location": "Jalan/Lebuhraya\nutama Kuala\nLumpur",
         "date": "7/3/2022",
+        "year": "2022",
         "depth_range": "0.1-0.5",
         "avg_depth": 0.3
       }
@@ -28,7 +607,8 @@
       },
       "properties": {
         "location": "Lebuhraya\nBesraya-\nPersimpangan\nKuchai",
-        "date": "7/3/2023",
+        "date": "7/3/2022",
+        "year": "2022",
         "depth_range": "0.1-1.5",
         "avg_depth": 0.8
       }
@@ -44,7 +624,8 @@
       },
       "properties": {
         "location": "Lebuhraya\nKESAS-Tol\nAwan Besar",
-        "date": "7/3/2024",
+        "date": "7/3/2022",
+        "year": "2022",
         "depth_range": "0.1-0.5",
         "avg_depth": 0.3
       }
@@ -60,7 +641,8 @@
       },
       "properties": {
         "location": "Underpass\nJalan Tun\nRazak-Intermark",
-        "date": "7/3/2025",
+        "date": "7/3/2022",
+        "year": "2022",
         "depth_range": "0.1-0.3",
         "avg_depth": 0.2
       }
@@ -76,7 +658,8 @@
       },
       "properties": {
         "location": "Terowong Jalan\nChan Sow Lin",
-        "date": "7/3/2026",
+        "date": "7/3/2022",
+        "year": "2022",
         "depth_range": "0.1-0.3",
         "avg_depth": 0.2
       }
@@ -92,7 +675,8 @@
       },
       "properties": {
         "location": "Jalan Syed\nPutra",
-        "date": "7/3/2027",
+        "date": "7/3/2022",
+        "year": "2022",
         "depth_range": "0.1-0.5",
         "avg_depth": 0.3
       }
@@ -108,7 +692,8 @@
       },
       "properties": {
         "location": "Lebuhraya KL-\nSeremban",
-        "date": "7/3/2028",
+        "date": "7/3/2022",
+        "year": "2022",
         "depth_range": "0.1-0.3",
         "avg_depth": 0.2
       }
@@ -124,7 +709,8 @@
       },
       "properties": {
         "location": "Jalan Cheras",
-        "date": "7/3/2029",
+        "date": "7/3/2022",
+        "year": "2022",
         "depth_range": "0.1-0.3",
         "avg_depth": 0.2
       }
@@ -140,7 +726,8 @@
       },
       "properties": {
         "location": "Jalan Parlimen",
-        "date": "7/3/2030",
+        "date": "7/3/2022",
+        "year": "2022",
         "depth_range": "0.1-0.3",
         "avg_depth": 0.2
       }
@@ -156,7 +743,8 @@
       },
       "properties": {
         "location": "Jalan Air Keroh,\nAir Panas,\nSetapak",
-        "date": "7/3/2031",
+        "date": "7/3/2022",
+        "year": "2022",
         "depth_range": "0.1-0.3",
         "avg_depth": 0.2
       }
@@ -172,7 +760,8 @@
       },
       "properties": {
         "location": "Sekitar Leboh\nAmpang-LRT\nMasjid Jamek",
-        "date": "7/3/2032",
+        "date": "7/3/2022",
+        "year": "2022",
         "depth_range": "0.1-0.3",
         "avg_depth": 0.2
       }
@@ -188,7 +777,8 @@
       },
       "properties": {
         "location": "Taman Salak\nSelatan",
-        "date": "7/3/2033",
+        "date": "7/3/2022",
+        "year": "2022",
         "depth_range": "0.1-0.5",
         "avg_depth": 0.3
       }
@@ -204,7 +794,8 @@
       },
       "properties": {
         "location": "Taman U-\nThant,Jalan\nAmpang",
-        "date": "7/3/2034",
+        "date": "7/3/2022",
+        "year": "2022",
         "depth_range": "0.1-0.5",
         "avg_depth": 0.3
       }
@@ -220,7 +811,8 @@
       },
       "properties": {
         "location": "Taman Sri\nPetaling",
-        "date": "7/3/2035",
+        "date": "7/3/2022",
+        "year": "2022",
         "depth_range": "0.1-0.5",
         "avg_depth": 0.3
       }
@@ -236,7 +828,8 @@
       },
       "properties": {
         "location": "Taska Roskani\nJKR, Jalan Batu\n2 1/2 Cheras",
-        "date": "7/3/2036",
+        "date": "7/3/2022",
+        "year": "2022",
         "depth_range": "0.1-0.5",
         "avg_depth": 0.3
       }
@@ -252,7 +845,8 @@
       },
       "properties": {
         "location": "Jlan Raja Muda\nMusa, Kampung\nBaru",
-        "date": "7/3/2037",
+        "date": "7/3/2022",
+        "year": "2022",
         "depth_range": "0.1-0.3",
         "avg_depth": 0.2
       }
@@ -268,7 +862,8 @@
       },
       "properties": {
         "location": "Jalan Raja\nMuda Musa,\nKampung Baru",
-        "date": "7/3/2038",
+        "date": "7/3/2022",
+        "year": "2022",
         "depth_range": "0.1-0.3",
         "avg_depth": 0.2
       }
@@ -284,7 +879,8 @@
       },
       "properties": {
         "location": "Kampung\nPeriuk,\nKampung Baru",
-        "date": "7/3/2039",
+        "date": "7/3/2022",
+        "year": "2022",
         "depth_range": "0.1-0.5",
         "avg_depth": 0.3
       }
@@ -300,7 +896,8 @@
       },
       "properties": {
         "location": "Kampung Pasir\nBaru",
-        "date": "7/3/2040",
+        "date": "7/3/2022",
+        "year": "2022",
         "depth_range": "0.1-0.5",
         "avg_depth": 0.3
       }
@@ -316,7 +913,8 @@
       },
       "properties": {
         "location": "Sekitar Kolej\nTelekom",
-        "date": "7/3/2041",
+        "date": "7/3/2022",
+        "year": "2022",
         "depth_range": "0.1-0.5",
         "avg_depth": 0.3
       }
@@ -332,7 +930,8 @@
       },
       "properties": {
         "location": "Kawasan\nParking Wisma\nOUG\nberhampiran\nPavilion",
-        "date": "7/3/2042",
+        "date": "7/3/2022",
+        "year": "2022",
         "depth_range": "0.1-1.5",
         "avg_depth": 0.8
       }
@@ -349,6 +948,7 @@
       "properties": {
         "location": "Jalan Tuanku\nAbdul Halim",
         "date": "25/4/2022",
+        "year": "2022",
         "depth_range": "0.3-1.0",
         "avg_depth": 0.65
       }
@@ -364,7 +964,8 @@
       },
       "properties": {
         "location": "Lebuhraya\nSultan Iskandar",
-        "date": "25/4/2023",
+        "date": "25/4/2022",
+        "year": "2022",
         "depth_range": "0.3-1.0",
         "avg_depth": 0.65
       }
@@ -380,7 +981,8 @@
       },
       "properties": {
         "location": "Jalan Traves",
-        "date": "25/4/2024",
+        "date": "25/4/2022",
+        "year": "2022",
         "depth_range": "0.3-1.0",
         "avg_depth": 0.65
       }
@@ -396,7 +998,8 @@
       },
       "properties": {
         "location": "Jalan Melaka",
-        "date": "25/4/2024",
+        "date": "25/4/2022",
+        "year": "2022",
         "depth_range": "0.3-1.0",
         "avg_depth": 0.65
       }
@@ -412,7 +1015,8 @@
       },
       "properties": {
         "location": "Jalan Kuching",
-        "date": "25/4/2025",
+        "date": "25/4/2022",
+        "year": "2022",
         "depth_range": "0.3-1.0",
         "avg_depth": 0.65
       }
@@ -428,7 +1032,8 @@
       },
       "properties": {
         "location": "Segambut\nDalam",
-        "date": "25/4/2026",
+        "date": "25/4/2022",
+        "year": "2022",
         "depth_range": "0.3-1.0",
         "avg_depth": 0.65
       }
@@ -444,7 +1049,8 @@
       },
       "properties": {
         "location": "Jalan Segambut",
-        "date": "25/4/2027",
+        "date": "25/4/2022",
+        "year": "2022",
         "depth_range": "0.3-0.6",
         "avg_depth": 0.44999999999999996
       }
@@ -460,7 +1066,8 @@
       },
       "properties": {
         "location": "Segambut\nBahagia",
-        "date": "25/4/2028",
+        "date": "25/4/2022",
+        "year": "2022",
         "depth_range": "0.3-1.0",
         "avg_depth": 0.65
       }
@@ -476,7 +1083,8 @@
       },
       "properties": {
         "location": "Jalan Parlimen",
-        "date": "25/4/2029",
+        "date": "25/4/2022",
+        "year": "2022",
         "depth_range": "0.3-0.6",
         "avg_depth": 0.44999999999999996
       }
@@ -492,7 +1100,8 @@
       },
       "properties": {
         "location": "Jalan Kasipillay",
-        "date": "25/4/2030",
+        "date": "25/4/2022",
+        "year": "2022",
         "depth_range": "0.3-0.6",
         "avg_depth": 0.44999999999999996
       }
@@ -508,7 +1117,8 @@
       },
       "properties": {
         "location": "Kampung\nPeriuk,\nKampung Baru",
-        "date": "25/4/2032",
+        "date": "25/4/2022",
+        "year": "2022",
         "depth_range": "0.3-0.6",
         "avg_depth": 0.44999999999999996
       }
@@ -524,7 +1134,8 @@
       },
       "properties": {
         "location": "Jalan Raja\nChulan",
-        "date": "25/4/2033",
+        "date": "25/4/2022",
+        "year": "2022",
         "depth_range": "0.3-0.6",
         "avg_depth": 0.44999999999999996
       }
@@ -540,7 +1151,8 @@
       },
       "properties": {
         "location": "Jalan Pudu",
-        "date": "25/4/2034",
+        "date": "25/4/2022",
+        "year": "2022",
         "depth_range": "0.3-1.0",
         "avg_depth": 0.65
       }

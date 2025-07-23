@@ -1,16 +1,31 @@
 import pandas as pd
 import json
 import os
+import glob
 
-df = pd.read_csv('../data/kl_flood_data.csv')
+input_folder = 'data/flood/'
+output_path = 'static/data/flood_data.geojson'
 
-# Clean column names just in case
-df.columns = df.columns.str.strip()
+# Find all CSV files in the folder
+csv_files = glob.glob(os.path.join(input_folder, '*.csv'))
 
-# Print columns to verify
-print("📄 Columns in the data:", df.columns.tolist())
+dfs = []
+for file in csv_files:
+    print(f"Processing file: {file}") # Terminal log for each file processed
+    df = pd.read_csv(file)
+    df.columns = df.columns.str.strip()
+    year = os.path.splitext(os.path.basename(file))[0][-4:]  # Extract year from filename
+    df['year'] = year
+    dfs.append(df)
 
-# Rename columns to consistent names (optional)
+if not dfs:
+    print("No CSV files found in", input_folder)
+    exit(1)
+
+# Combine all data
+df = pd.concat(dfs, ignore_index=True)
+
+# Rename columns to consistent names (adjust as needed)
 df = df.rename(columns={
     'DATE': 'Date',
     'LOCATION': 'Location',
@@ -19,7 +34,6 @@ df = df.rename(columns={
     'MAXIMUM DEPTH (M)': 'Maximum Depth(m)'
 })
 
-# Function to calculate average from range
 def extract_avg_depth(depth_str):
     try:
         parts = depth_str.split('-')
@@ -28,13 +42,9 @@ def extract_avg_depth(depth_str):
     except:
         return None
 
-# Apply to create new column
 df['avg_depth'] = df['Maximum Depth(m)'].apply(extract_avg_depth)
-
-# Drop rows with missing data
 df = df.dropna(subset=['Latitude', 'Longitude', 'avg_depth'])
 
-# Create GeoJSON features
 features = []
 for _, row in df.iterrows():
     feature = {
@@ -46,21 +56,19 @@ for _, row in df.iterrows():
         "properties": {
             "location": row['Location'],
             "date": row['Date'],
+            "year": row['year'],
             "depth_range": row['Maximum Depth(m)'],
             "avg_depth": row['avg_depth']
         }
     }
     features.append(feature)
 
-# Wrap and write GeoJSON
 geojson = {
     "type": "FeatureCollection",
     "features": features
 }
 
-output_path = '../static/data/flood_data.geojson'
 os.makedirs(os.path.dirname(output_path), exist_ok=True)
-
 with open(output_path, 'w') as f:
     json.dump(geojson, f, indent=2)
 
