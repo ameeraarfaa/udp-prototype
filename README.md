@@ -34,7 +34,9 @@ generate_data.bat
 This will run all necessary Python scripts in the `scripts/` folder and output files to `static/data/`.
 
 ### 3. Start the Web Server
-Serve the project using your preferred static server or framework (Flask, Django, etc.). Ensure the `static/` folder is accessible.
+```
+python -m http.server 8000
+```
 
 ### 4. Open the App
 Open `map.html` in your browser. (http://localhost:8000/map.html)
