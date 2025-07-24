@@ -324,9 +324,17 @@ export function setupSidebarUI() {
   console.log('setupSidebarUI is running...');
 
   icons.forEach(({ id, panel }) => {
-    const icon = document.getElementById(id);
-    if (!icon) return;
+  const icon = document.getElementById(id);
+  if (!icon) return;
     icon.addEventListener('click', () => {
+      // Remove 'selected' from all icons
+      icons.forEach(({ id }) => {
+        const otherIcon = document.getElementById(id);
+        if (otherIcon) otherIcon.classList.remove('selected');
+      });
+      // Add 'selected' to the clicked icon
+      icon.classList.add('selected');
+
       if (locked && expanded === panel) {
         unlockPanel();
       } else {

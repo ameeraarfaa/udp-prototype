@@ -12,9 +12,10 @@ export async function loadLayersFromConfig(map, selectedState) {
   const config = await res.json();
 
   for (const layerDef of config) {
+    const sourceId = `${layerDef.key}-source`;
+    const layerId = `${layerDef.key}-layer`;
+
     if (layerDef.type === 'geojson') {
-      const sourceId = `${layerDef.key}-source`;
-      const layerId = `${layerDef.key}-layer`;
       let geojson = await fetch(layerDef.source).then(r => r.json());
 
       // Filter flood points by selectedState if this is the flood layer
@@ -73,7 +74,38 @@ export async function loadLayersFromConfig(map, selectedState) {
       }
     }
 
-    // TODO: Add support for raster/image/rectangle layers in future
+    // --- Support for image overlays (e.g., LST heatmap) ---
+    if (layerDef.type === 'image') {
+      // Use bounds from config if present, otherwise hardcoded KL bounds
+      const bounds = layerDef.bounds || [
+        [101.6771131438013, 3.174396645025634], // top-left (west, north)
+        [101.7228295528681, 3.174396645025634], // top-right (east, north)
+        [101.7228295528681, 3.121411961229557], // bottom-right (east, south)
+        [101.6771131438013, 3.121411961229557]  // bottom-left (west, south)
+      ];
+
+      // Remove existing layer/source if present
+      if (map.getLayer(layerId)) map.removeLayer(layerId);
+      if (map.getSource(sourceId)) map.removeSource(sourceId);
+
+      map.addSource(sourceId, {
+        type: 'image',
+        url: layerDef.source,
+        coordinates: bounds
+      });
+
+      map.addLayer({
+        id: layerId,
+        type: 'raster',
+        source: sourceId,
+        paint: {
+          'raster-opacity': layerDef.opacity ?? 0.9
+        },
+        layout: { visibility: 'none' }
+      });
+
+      subparameterLayers[layerDef.key] = layerId;
+    }
   }
 }
 

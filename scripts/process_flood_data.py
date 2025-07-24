@@ -6,12 +6,12 @@ import glob
 input_folder = 'data/flood/'
 output_path = 'static/data/flood_data.geojson'
 
-# Find all CSV files in the folder
+# Find all CSV files in the input folder
 csv_files = glob.glob(os.path.join(input_folder, '*.csv'))
 
 dfs = []
 for file in csv_files:
-    print(f"Processing file: {file}") # Terminal log for each file processed
+    print(f"Processing file: {file}") # Terminal log for each file processed (debugging)
     df = pd.read_csv(file)
     df.columns = df.columns.str.strip()
     year = os.path.splitext(os.path.basename(file))[0][-4:]  # Extract year from filename
@@ -25,7 +25,7 @@ if not dfs:
 # Combine all data
 df = pd.concat(dfs, ignore_index=True)
 
-# Rename columns to consistent names (adjust as needed)
+# Rename columns to consistent names
 df = df.rename(columns={
     'DATE': 'Date',
     'LOCATION': 'Location',

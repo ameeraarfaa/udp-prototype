@@ -21,18 +21,27 @@
   </div>
   <div id="sidebar-static">
     <div class="sidebar-icon" id="icon-general" title="General">
-      <svg width="24" height="24" fill="none" stroke="#222" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><circle cx="12" cy="16" r="1"/></svg>
+      <svg width="24" height="24" fill="none" stroke="##000F9F" stroke-opacity="0.3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><circle cx="12" cy="16" r="1"/></svg>
     </div>
     <div class="sidebar-icon" id="icon-layers" title="Layers">
-      <svg width="24" height="24" fill="none" stroke="#222" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="4"/><rect x="4" y="10" width="16" height="4"/><rect x="4" y="16" width="16" height="4"/></svg>
+      <svg width="24" height="24" fill="none" stroke="##000F9F" stroke-opacity="0.3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="4"/><rect x="4" y="10" width="16" height="4"/><rect x="4" y="16" width="16" height="4"/></svg>
     </div>
     <div class="sidebar-icon" id="icon-account" title="Account">
-      <svg width="24" height="24" fill="none" stroke="#222" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 8-4 8-4s8 0 8 4"/></svg>
+      <svg width="24" height="24" fill="none" stroke="##000F9F" stroke-opacity="0.3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 8-4 8-4s8 0 8 4"/></svg>
     </div>
   </div>
   <div id="sidebar-expand"></div>
   <div id="map"></div>
-
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/maplibre-gl@3.6.1/dist/maplibre-gl.js"></script>
+  <script type="module" src="static/js/main.js"></script>
+  <script type="module" src="static/js/sidebar.js"></script>
+        <label>Weightage</label>
+        <!-- Placeholder for future sliders/inputs -->
+      </div>
+      <button id="reset-map-btn" class="btn btn-secondary" disabled>Reset Map</button>
+    </div>
+  </div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://unpkg.com/maplibre-gl@3.6.1/dist/maplibre-gl.js"></script>
   <script type="module" src="static/js/main.js"></script>

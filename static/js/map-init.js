@@ -1,4 +1,3 @@
-// map-init.js
 import { getStateLocations } from './boundaries.js';
 
 let mapInstance;
@@ -36,7 +35,6 @@ export async function initMap() {
 
   mapInstance.on('load', () => {
     console.log('MapLibre map loaded');
-    // Don't assume sidebar exists; let sidebar call populateLocationDropdown() after render.
   });
 
   mapInstance.on('error', (e) => {

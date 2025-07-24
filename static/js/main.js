@@ -22,4 +22,6 @@ async function initialiseApp() {
   });
 }
 
-window.addEventListener('DOMContentLoaded', initialiseApp);
+window.addEventListener('DOMContentLoaded', () => {
+  initialiseApp();
+});
