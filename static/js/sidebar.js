@@ -3,6 +3,15 @@ import { getMap, getLocations, flyToLocation, setBaseMapStyle, populateLocationD
 import { subparameterLayers, updateCompositeLayer, updateExportButtonState } from './layer-controls.js';
 import { exportVisibleMap } from './export.js';
 import { addFloodCountsToPolygons, showFloodChoropleth } from './choropleth.js';
+import { renderActiveLayersPanel, syncActiveOverlaysFromSidebar } from './active-layers.js';
+
+// idebar state
+window.sidebarState = {
+  boundaries: {},
+  layers: {},
+  location: null,
+  baseStyle: null
+};
 
 // Maps UI boundary labels to internal type keys
 const BOUNDARY_LABEL_TO_TYPE = {
@@ -36,7 +45,8 @@ window.activeBoundaryType = 'state'; // Tracks active boundary type
 const icons = [
   { id: 'icon-general', panel: 'general' },
   { id: 'icon-layers', panel: 'layers' },
-  { id: 'icon-account', panel: 'account' }
+  { id: 'icon-account', panel: 'account' },
+  { id: 'icon-active-layers', panel: 'active-layers' }
 ];
 
 let expanded = null;
@@ -173,13 +183,18 @@ function getPanelContent(panel) {
     </div>
     <button id="download-map" class="btn btn-secondary w-100 mt-4" disabled>Export Map (.jpeg)</button>
   `;
-}
+  }
 
   if (panel === 'Account') {
     return `<h5>Account</h5><div class="text-muted">No account options yet.</div>`;
   }
 
+  if (panel === 'active-layers') {
+    return `<div id="active-layers-panel"></div>`;
+  }
+
   return '';
+
 }
 
 function showPanel(panel) {
@@ -194,7 +209,11 @@ function showPanel(panel) {
 
   if (panel === 'layers') attachLayerPanelListeners();
 
-  // Attach export button logic
+  if (panel === 'active-layers') {
+    renderActiveLayersPanel('active-layers-panel');
+  }
+
+  // Export button logic
   const downloadButton = document.getElementById('download-map');
   if (downloadButton) {
     downloadButton.addEventListener('click', exportVisibleMap);
@@ -299,6 +318,7 @@ function attachLayerPanelListeners() {
       }
       updateCompositeLayer();
       updateExportButtonState();
+      syncActiveOverlaysFromSidebar();
     });
   });
 

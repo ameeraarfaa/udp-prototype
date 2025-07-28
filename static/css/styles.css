@@ -167,3 +167,42 @@ h5 {
 .accordion-button span {
   font-size: 0.9rem;
 }
+
+/* Active Layers Tab */
+#active-layers-tab {
+  position: fixed;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  background: #000F9F;
+  color: #fff;
+  border-radius: 8px 0 0 8px;
+  padding: 12px 8px;
+  cursor: pointer;
+  z-index: 1100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: -2px 0 8px rgba(0,0,0,0.08);
+  transition: right 0.3s cubic-bezier(.4,0,.2,1);
+}
+#active-layers-tab.open {
+  right: 320px; 
+}
+
+#active-layers-panel {
+  position: fixed;
+  top: 0;
+  right: -320px;
+  width: 320px;
+  height: 100vh;
+  background: #fff;
+  box-shadow: -2px 0 12px rgba(0,0,0,0.12);
+  z-index: 1099;
+  transition: right 0.3s cubic-bezier(.4,0,.2,1);
+  overflow-y: auto;
+  padding: 24px 16px 16px 16px;
+}
+#active-layers-panel.open {
+  right: 0;
+}

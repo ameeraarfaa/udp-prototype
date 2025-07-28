@@ -941,23 +941,6 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          101.9729,
-          3.153
-        ]
-      },
-      "properties": {
-        "location": "Jalan Tuanku\nAbdul Halim",
-        "date": "25/4/2022",
-        "year": "2022",
-        "depth_range": "0.3-1.0",
-        "avg_depth": 0.65
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           101.6845,
           3.1386
         ]
@@ -981,23 +964,6 @@
       },
       "properties": {
         "location": "Jalan Traves",
-        "date": "25/4/2022",
-        "year": "2022",
-        "depth_range": "0.3-1.0",
-        "avg_depth": 0.65
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          101.9695,
-          3.1498
-        ]
-      },
-      "properties": {
-        "location": "Jalan Melaka",
         "date": "25/4/2022",
         "year": "2022",
         "depth_range": "0.3-1.0",
