@@ -33,6 +33,8 @@ export async function initMap() {
     preserveDrawingBuffer: true
   });
 
+   window.mapInstance = mapInstance;
+
   mapInstance.on('load', () => {
     console.log('MapLibre map loaded');
   });
@@ -45,10 +47,10 @@ export async function initMap() {
 }
 
 /**
- * Returns the initialized map instance.
+ * Returns the initialised map instance.
  */
 export function getMap() {
-  return mapInstance;
+  return window.mapInstance;
 }
 
 /**

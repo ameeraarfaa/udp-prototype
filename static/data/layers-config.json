@@ -6,6 +6,15 @@
     "label": "Flood",
     "color": "blue"
   },
+
+  {
+    "key": "flood-density",
+    "type": "heatmap",
+    "source": "static/data/flood_data.geojson",
+    "label": "Flood Density Heatmap",
+    "color": "blue"
+  },
+
   {
     "key": "lst",
     "type": "image",
@@ -13,6 +22,7 @@
     "label": "Land Surface Temp",
     "opacity": 0.5
   },
+  
   {
     "key": "water",
     "type": "rectangle",

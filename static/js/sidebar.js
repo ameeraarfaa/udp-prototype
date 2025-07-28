@@ -76,6 +76,7 @@ function getPanelContent(panel) {
     <h5>Layers</h5>
     <div id="parameters-section">
       <div class="accordion" id="parameterAccordion">
+
         <!-- Climate Accordion -->
         <div class="accordion-item">
           <h2 class="accordion-header">
@@ -95,6 +96,10 @@ function getPanelContent(panel) {
                   <input class="form-check-input map-toggle" type="checkbox" id="toggle-flood-frequency" data-layer="flood-frequency" />
                   <label class="form-check-label" for="toggle-flood-frequency">Flood Frequency</label>
                 </div>
+                <div class="form-check ms-3">
+                  <input class="form-check-input map-toggle" type="checkbox" id="toggle-flood-density" data-layer="flood-density" />
+                  <label class="form-check-label" for="toggle-flood-density">Flood Density</label>
+                </div>
               </div>
               <div class="mb-2">
                 <div class="fw-bold">Land Surface Temperature</div>
@@ -109,6 +114,7 @@ function getPanelContent(panel) {
             </div>
           </div>
         </div>
+
         <!-- Environment Accordion -->
         <div class="accordion-item">
           <h2 class="accordion-header">
@@ -122,6 +128,7 @@ function getPanelContent(panel) {
             </div>
           </div>
         </div>
+
         <!-- Economy Accordion -->
         <div class="accordion-item">
           <h2 class="accordion-header">
@@ -135,6 +142,7 @@ function getPanelContent(panel) {
             </div>
           </div>
         </div>
+
         <!-- Population Accordion -->
         <div class="accordion-item">
           <h2 class="accordion-header">
@@ -148,6 +156,7 @@ function getPanelContent(panel) {
             </div>
           </div>
         </div>
+
         <!-- Social Accordion -->
         <div class="accordion-item">
           <h2 class="accordion-header">
@@ -182,6 +191,7 @@ function showPanel(panel) {
     attachGeneralListeners();
     populateLocationDropdown();
   }
+
   if (panel === 'layers') attachLayerPanelListeners();
 
   // Attach export button logic
@@ -268,11 +278,14 @@ async function updateBoundaryLayersForState(state) {
 function attachLayerPanelListeners() {
   const map = getMap();
   document.querySelectorAll('.map-toggle').forEach(input => {
+    console.log('Attaching listener to:', input.id); //Debugging on Console
     input.addEventListener('change', () => {
       const key = input.dataset.layer;
       const checked = input.checked;
       const layerId = subparameterLayers[key];
       if (!layerId) return;
+
+      console.log('Toggling layer:', key, layerId, checked); //Debugging on Console
 
       // Special handling for flood points
       if (key === 'flood') {

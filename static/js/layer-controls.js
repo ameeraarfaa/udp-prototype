@@ -47,6 +47,7 @@ export async function loadLayersFromConfig(map, selectedState) {
             'circle-stroke-color': '#222'
           }
         });
+        window.subparameterLayers = subparameterLayers;
       }
 
       subparameterLayers[layerDef.key] = layerId;
@@ -103,10 +104,58 @@ export async function loadLayersFromConfig(map, selectedState) {
         },
         layout: { visibility: 'none' }
       });
-
       subparameterLayers[layerDef.key] = layerId;
     }
+    if (layerDef.type === 'heatmap') {
+      let geojson = await fetch(layerDef.source).then(r => r.json());
+
+      // Optionally filter by selectedState if needed
+      if (layerDef.key === 'flood-heatmap' && selectedState) {
+        geojson.features = geojson.features.filter(f =>
+          f.properties.state === selectedState
+        );
+      }
+
+      // Remove existing layer/source if present
+      if (map.getLayer(layerId)) map.removeLayer(layerId);
+      if (map.getSource(sourceId)) map.removeSource(sourceId);
+
+      map.addSource(sourceId, { type: 'geojson', data: geojson });
+
+      map.addLayer({
+        id: layerId,
+        type: 'heatmap',
+        source: sourceId,
+        layout: { visibility: 'none' },
+        paint: {
+          // Heatmap intensity based on avg_depth
+          'heatmap-weight': [
+            'interpolate',
+            ['linear'],
+            ['get', 'avg_depth'],
+            0, 0,
+            1, 1
+          ],
+          'heatmap-intensity': 1,
+          'heatmap-radius': 24,
+          'heatmap-opacity': 0.7,
+          'heatmap-color': [
+            'interpolate',
+            ['linear'],
+            ['heatmap-density'],
+            0, 'rgba(33,102,172,0)',
+            0.2, 'rgb(103,169,207)',
+            0.4, 'rgb(209,229,240)',
+            0.6, 'rgb(253,219,199)',
+            0.8, 'rgb(239,138,98)',
+            1, 'rgb(178,24,43)'
+          ]
+        }
+      });
+      subparameterLayers[layerDef.key] = layerId;
+      console.log('Added heatmap layer:', layerId, map.getLayer(layerId));
   }
+}
 }
 
 /**
@@ -128,3 +177,4 @@ export function updateExportButtonState() {
   const btn = document.getElementById('download-map');
   if (btn) btn.disabled = !anyChecked;
 }
+
