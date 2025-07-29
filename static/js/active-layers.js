@@ -98,11 +98,13 @@ export function renderActiveLayersPanel(containerId = 'active-layers-panel') {
     });
     rect.addEventListener('dragstart', e => e.preventDefault());
   });
+
   layersContent.addEventListener('mousemove', e => {
     if (dragSrc) {
-      const over = e.target.closest('.active-layer-rect');
+      // Find the rectangle under the mouse
+      const over = document.elementFromPoint(e.clientX, e.clientY)?.closest('.active-layer-rect');
       if (over && over !== dragSrc) {
-        layersContent.insertBefore(dragSrc, over.nextSibling);
+        layersContent.insertBefore(dragSrc, over);
         // Update activeOverlays order
         activeOverlays = Array.from(layersContent.querySelectorAll('.active-layer-rect')).map(el => {
           const key = el.dataset.key;
@@ -116,27 +118,48 @@ export function renderActiveLayersPanel(containerId = 'active-layers-panel') {
 
 // Update map layer order based on activeOverlays
 function updateMapLayerOrder() {
-  activeOverlays.forEach((layer, i) => {
-    const nextLayer = activeOverlays[i + 1];
-    const beforeLayerId = nextLayer ? nextLayer.key + '-layer' : 'boundary-layer';
-    window.mapInstance.moveLayer(layer.key + '-layer', beforeLayerId);
-  });
+  const map = window.mapInstance;
+  // Find the currently visible boundary layer
+  const boundaryLayerId = Array.from(map.getStyle().layers)
+    .map(l => l.id)
+    .find(id => id.startsWith('boundary-layer-'));
+
+  // Move overlays in reverse order so the topmost in the panel is topmost on the map
+  for (let i = activeOverlays.length - 1; i >= 0; i--) {
+    const layer = activeOverlays[i];
+    if (boundaryLayerId && map.getLayer(boundaryLayerId)) {
+      // Move each overlay just before the boundary layer
+      map.moveLayer(layer.key + '-layer', boundaryLayerId);
+    } else {
+      // If no boundary, move overlays to the top (above all others)
+      map.moveLayer(layer.key + '-layer');
+    }
+  }
 }
 
 // Call this after toggling overlays in sidebar
 export function syncActiveOverlaysFromSidebar() {
-  activeOverlays = [];
-  document.querySelectorAll('.map-toggle:checked').forEach(input => {
+  // Get all checked toggles in the order they were checked
+  const checkedInputs = Array.from(document.querySelectorAll('.map-toggle:checked'));
+  // Remove layers that are no longer checked
+  activeOverlays = activeOverlays.filter(l =>
+    checkedInputs.some(input => input.dataset.layer === l.key)
+  );
+  // Add new layers to bottom of stack
+  checkedInputs.forEach(input => {
     const key = input.dataset.layer;
-    activeOverlays.push({
-      key,
-      label: overlayLabels[key] || key,
-      opacity: 1
-    });
+    if (!activeOverlays.some(l => l.key === key)) {
+      activeOverlays.unshift({
+        key,
+        label: overlayLabels[key] || key,
+        opacity: 1
+      });
+    }
   });
   // Reset selection if no overlays
   if (!activeOverlays.some(l => l.key === selectedLayerKey)) {
-    selectedLayerKey = activeOverlays.length ? activeOverlays[0].key : null;
+    selectedLayerKey = activeOverlays.length ? activeOverlays[activeOverlays.length - 1].key : null;
   }
   renderActiveLayersPanel('active-layers-panel');
+  updateMapLayerOrder();
 }
