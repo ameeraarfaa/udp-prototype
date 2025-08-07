@@ -1,3 +1,5 @@
+import { normaliseProperties } from './boundaryNormaliser.js';
+
 /**
  * Adds a 'flood_count' property to each polygon in boundaryGeoJson,
  * counting how many points from floodGeoJson fall inside.
@@ -22,6 +24,8 @@ export function addFloodCountsToPolygons(boundaryGeoJson, floodGeoJson) {
  * @param {string} labelProp - property name for popup label (e.g. 'state', 'parlimen', etc)
  */
 export function showFloodChoropleth(map, boundaryGeoJson, labelProp = 'state') {
+  const normProps = normaliseProperties(labelProp, props);
+
   // Remove previous choropleth if exists
   if (map.getLayer('flood-choropleth')) map.removeLayer('flood-choropleth');
   if (map.getSource('flood-choropleth')) map.removeSource('flood-choropleth');

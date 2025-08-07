@@ -8,8 +8,23 @@ let compositeLayer = null;
  * @param {maplibregl.Map} map - MapLibre map instance
  */
 export async function loadLayersFromConfig(map, selectedState) {
+  console.log('🚀 loadLayersFromConfig called with:', { selectedState, mapExists: !!map });
+  
   const res = await fetch('static/data/layers-config.json');
   const config = await res.json();
+
+  // Debug: Show all layers in current style
+  const styleLayers = map.getStyle().layers;
+  console.log('📋 Current style layers:', styleLayers.map(l => `${l.id} (${l.type})`));
+
+  //Find Topmost Layer
+  const layers = map.getStyle().layers;
+  const firstSymbolLayer = layers.find(layer => layer.type === 'symbol');
+  const beforeId = firstSymbolLayer ? firstSymbolLayer.id : undefined;
+  console.log('🎯 Will insert layers before:', beforeId || 'top of stack');
+  console.log('🎯 Available symbol layers:', layers.filter(l => l.type === 'symbol').map(l => l.id));
+
+
 
   for (const layerDef of config) {
     const sourceId = `${layerDef.key}-source`;
@@ -18,14 +33,17 @@ export async function loadLayersFromConfig(map, selectedState) {
     if (layerDef.type === 'geojson') {
       let geojson = await fetch(layerDef.source).then(r => r.json());
 
-      // Filter flood points by selectedState if this is the flood layer
-      if (layerDef.key === 'flood' && selectedState) {
+      // Filter flood points by selectedState if this is the flood layer AND a valid state is selected
+      if (layerDef.key === 'flood' && selectedState && selectedState !== 'Select...') {
         geojson.features = geojson.features.filter(f =>
           f.properties.state === selectedState
         );
+        console.log(`🔍 Filtered flood features for ${selectedState}:`, geojson.features.length);
+      } else if (layerDef.key === 'flood') {
+        console.log(`🔍 Showing all flood features (no state filter):`, geojson.features.length);
       }
 
-      // Always add or update the source before adding the layer
+      // Always add or update source before adding the layer
       if (map.getSource(sourceId)) {
         map.getSource(sourceId).setData(geojson);
       } else {
@@ -39,6 +57,7 @@ export async function loadLayersFromConfig(map, selectedState) {
           type: 'circle',
           source: sourceId,
           layout: { visibility: 'none' },
+          minzoom: layerDef.minzoom ?? 8,
           paint: {
             'circle-radius': 6,
             'circle-color': layerDef.color || 'blue',
@@ -47,6 +66,19 @@ export async function loadLayersFromConfig(map, selectedState) {
             'circle-stroke-color': '#222'
           }
         });
+
+        // Console Log for Debugging: confirm layer added
+        console.log(`✅ Successfully added ${layerDef.type} layer: ${layerId}`, {
+          layerExists: !!map.getLayer(layerId),
+          sourceExists: !!map.getSource(sourceId),
+          currentStyle: map.getStyle().name || 'unknown'
+        });
+
+        const allLayers = map.getStyle().layers;
+        const layerIndex = allLayers.findIndex(l => l.id === layerId);
+        console.log(`🔍 Layer "${layerId}" is at position ${layerIndex} out of ${allLayers.length} total layers`);
+        console.log(`🔍 Top 5 layers:`, allLayers.slice(-5).map(l => l.id));
+
         window.subparameterLayers = subparameterLayers;
       }
 
@@ -102,9 +134,22 @@ export async function loadLayersFromConfig(map, selectedState) {
         paint: {
           'raster-opacity': layerDef.opacity ?? 0.9
         },
-        layout: { visibility: 'none' }
+        layout: { visibility: 'none' },
+        minzoom: layerDef.minzoom ?? 8
       });
-      subparameterLayers[layerDef.key] = layerId;
+
+      // Console Log for Debugging: confirm layer added
+      console.log(`✅ Successfully added ${layerDef.type} layer: ${layerId}`, {
+        layerExists: !!map.getLayer(layerId),
+        sourceExists: !!map.getSource(sourceId),
+        currentStyle: map.getStyle().name || 'unknown'
+      });
+      
+        const allLayers = map.getStyle().layers;
+        const layerIndex = allLayers.findIndex(l => l.id === layerId);
+        console.log(`🔍 Layer "${layerId}" is at position ${layerIndex} out of ${allLayers.length} total layers`);
+        console.log(`🔍 Top 5 layers:`, allLayers.slice(-5).map(l => l.id));
+            subparameterLayers[layerDef.key] = layerId;
     }
     if (layerDef.type === 'heatmap') {
       let geojson = await fetch(layerDef.source).then(r => r.json());
@@ -127,6 +172,7 @@ export async function loadLayersFromConfig(map, selectedState) {
         type: 'heatmap',
         source: sourceId,
         layout: { visibility: 'none' },
+        minzoom: layerDef.minzoom ?? 8,
         paint: {
           // Heatmap intensity based on avg_depth
           'heatmap-weight': [
@@ -152,6 +198,18 @@ export async function loadLayersFromConfig(map, selectedState) {
           ]
         }
       });
+
+      // Console Log for Debugging: confirm layer added
+      console.log(`✅ Successfully added ${layerDef.type} layer: ${layerId}`, {
+        layerExists: !!map.getLayer(layerId),
+        sourceExists: !!map.getSource(sourceId),
+        currentStyle: map.getStyle().name || 'unknown'
+      });
+        const allLayers = map.getStyle().layers;
+        const layerIndex = allLayers.findIndex(l => l.id === layerId);
+        console.log(`🔍 Layer "${layerId}" is at position ${layerIndex} out of ${allLayers.length} total layers`);
+        console.log(`🔍 Top 5 layers:`, allLayers.slice(-5).map(l => l.id));
+
       subparameterLayers[layerDef.key] = layerId;
       console.log('Added heatmap layer:', layerId, map.getLayer(layerId));
   }

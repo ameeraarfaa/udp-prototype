@@ -4,7 +4,8 @@
     "type": "geojson",
     "source": "static/data/flood_data.geojson",
     "label": "Flood",
-    "color": "blue"
+    "color": "blue",
+    "minzoom": 6
   },
 
   {
@@ -12,7 +13,8 @@
     "type": "heatmap",
     "source": "static/data/flood_data.geojson",
     "label": "Flood Density Heatmap",
-    "color": "blue"
+    "color": "blue",
+    "minzoom": 6
   },
 
   {
@@ -20,7 +22,8 @@
     "type": "image",
     "source": "output/lst_overlay.png",
     "label": "Land Surface Temp",
-    "opacity": 0.5
+    "opacity": 0.5,
+    "minzoom": 6
   },
   
   {

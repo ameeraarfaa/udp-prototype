@@ -6,6 +6,14 @@ import { renderActiveLayersPanel, syncActiveOverlaysFromSidebar } from './active
 async function initialiseApp() {
   await initMap();
 
+  // Initialise sidebar state with defaults
+  window.sidebarState = {
+    boundaries: {},
+    layers: {},
+    location: 'Select...',
+    baseStyle: window.BASE_STYLES?.[0]?.url || null 
+  };
+  
   const map = getMap();
   if (!map) {
     console.error('Map failed to initialize.');

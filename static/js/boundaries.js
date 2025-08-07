@@ -1,14 +1,65 @@
+import { normaliseProperties } from './boundaryNormaliser.js';
+
 const boundarySources = {
-  state: 'data/boundaries/administrative_1_state.geojson',
-  district: 'data/boundaries/administrative_2_district.geojson',
-  parlimen: 'data/boundaries/electoral_0_parlimen.geojson',
-  dun: 'data/boundaries/electoral_1_dun.geojson',
+  state: 'data/boundaries/State_MY.json',
+  district: 'data/boundaries/District_MY.json',
+  subdistrict: 'data/boundaries/Subdistrict_MY.json',
+  parlimen: 'data/boundaries/Parliament_MY.json',
+  dun: 'data/boundaries/DUN_Peninsular_MY.json',
+};
+
+const STATE_CODE_MAP = {
+  'Johor': '01',
+  'Kedah': '02',
+  'Kelantan': '03',
+  'Melaka': '04',
+  'Negeri Sembilan': '05',
+  'Pahang': '06',
+  'Pulau Pinang': '07',
+  'Perak': '08',
+  'Perlis': '09',
+  'Selangor': '10',
+  'Terengganu': '11',
+  'Sabah': '12',
+  'Sarawak': '13',
+  'Wilayah Persekutuan Kuala Lumpur': '14',
+  'Wilayah Persekutuan Labuan': '15',
+  'Wilayah Persekutuan Putrajaya': '16'
+};
+
+const PARLIMEN_STATE_NAME_MAP = {
+  'Wilayah Persekutuan Kuala Lumpur': 'WP KUALA LUMPUR',
+  'Wilayah Persekutuan Putrajaya': 'WP PUTRAJAYA',
+  'Wilayah Persekutuan Labuan': 'WP LABUAN'
+};
+
+function normalizeString(str) {
+  return (str || '').toString().trim().toLowerCase();
+}
+
+const STATE_COLOR_MAP = {
+  'Johor': '#E69F00',
+  'Kedah': '#56B4E9',
+  'Kelantan': '#009E73',
+  'Melaka': '#F0E442',
+  'Negeri Sembilan': '#0072B2',
+  'Pahang': '#D55E00',
+  'Pulau Pinang': '#CC79A7',
+  'Perak': '#999999',
+  'Perlis': '#117733',
+  'Selangor': '#44AA99',
+  'Terengganu': '#88CCEE',
+  'Sabah': '#DDCC77',
+  'Sarawak': '#AA4499',
+  'Wilayah Persekutuan Kuala Lumpur': '#332288',
+  'Wilayah Persekutuan Labuan': '#882255',
+  'Wilayah Persekutuan Putrajaya': '#661100'
 };
 
 /**
  * Loads and displays a boundary layer for a given type and state.
  * @param {maplibregl.Map} map - MapLibre map instance.
- * @param {string} type - One of: 'state', 'district', 'parlimen', 'dun'.
+ * @param {string} type - One of: 'state', 'district', 'subdistrict', 'parlimen', 'dun'.
  * @param {string} selectedState - The state name to filter the boundary to.
  */
 export async function loadBoundaryLayer(map, type, selectedState) {
@@ -25,10 +76,61 @@ export async function loadBoundaryLayer(map, type, selectedState) {
   const response = await fetch(boundarySources[type]);
   const geojson = await response.json();
 
-  const filtered = {
-    ...geojson,
-    features: geojson.features.filter(f => f.properties.state === selectedState)
-  };
+  // Debug: log raw and normalised properties
+  // geojson.features.forEach(f => {
+  //   console.log('Feature properties:', f.properties);
+  //   console.log('Normalised:', normaliseProperties(type, f.properties));
+  // });
+
+  let filtered;
+  if (type === 'state') {
+    // Case-insensitive match for state boundaries
+    filtered = {
+      ...geojson,
+      features: geojson.features.filter(
+        f => normalizeString(normaliseProperties(type, f.properties).name) === normalizeString(selectedState)
+      )
+    };
+  } else if (type === 'district') {
+    // Filter districts by state code prefix in ID
+    const stateCode = STATE_CODE_MAP[selectedState];
+    filtered = {
+      ...geojson,
+      features: geojson.features.filter(
+        f => f.properties.ID && f.properties.ID.startsWith(stateCode)
+      )
+    };
+  } else if (type === 'subdistrict') {
+    // Filter subdistricts by state code prefix in ID
+    const stateCode = STATE_CODE_MAP[selectedState];
+    filtered = {
+      ...geojson,
+      features: geojson.features.filter(
+        f => f.properties.ID && f.properties.ID.startsWith(stateCode)
+      )
+    };
+  } else if (type === 'parlimen') {
+    // Use mapping for parlimen boundaries
+    const mappedState = PARLIMEN_STATE_NAME_MAP[selectedState] || selectedState;
+    filtered = {
+      ...geojson,
+      features: geojson.features.filter(
+        f => normalizeString(normaliseProperties(type, f.properties).state) === normalizeString(mappedState)
+      )
+    };
+  } else {
+    // Case-insensitive match for dun, subdistrict
+    filtered = {
+      ...geojson,
+      features: geojson.features.filter(
+        f => normalizeString(normaliseProperties(type, f.properties).state) === normalizeString(selectedState)
+      )
+    };
+  }
+
+  // Debug: log filtered results
+  console.log('Filtered features count:', filtered.features.length);
+  console.log('Filtered GeoJSON:', filtered);
 
   // Add to map
   map.addSource(sourceId, {
@@ -40,11 +142,16 @@ export async function loadBoundaryLayer(map, type, selectedState) {
     id: layerId,
     type: 'line',
     source: sourceId,
+    minzoom: 8,
     paint: {
-      'line-color': ' #000F9F',
+      'line-color': STATE_COLOR_MAP[selectedState] || '#000F9F', // fallback color
       'line-width': 2
     }
   });
+
+  // Debug: confirm source/layer added
+  console.log('Source added:', map.getSource(sourceId));
+  console.log('Layer added:', map.getLayer(layerId));
 }
 
 /**
@@ -64,7 +171,7 @@ export async function getStateLocations() {
       center = getPolygonCenter(f.geometry.coordinates[0]);
     }
     return {
-      name: f.properties.state,
+      name: normaliseProperties('state', f.properties).name,
       center,
       zoom: 9
     };
@@ -75,7 +182,7 @@ export async function getStateLocations() {
   return locations;
 }
 
-// Internal utility — center of outer ring of polygon
+// Helper function to get center of outer ring of polygon
 function getPolygonCenter(coords) {
   const polygon = coords[0]; // outer ring
   const lats = polygon.map(c => c[1]);
