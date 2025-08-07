@@ -98,15 +98,23 @@ function getPanelContent(panel) {
       <h5>Map Settings</h5>
       <div class="mb-3">
         <label class="form-label">Base Map Style</label>
-        <select id="base-style-select" class="form-select mb-2">
-          ${window.BASE_STYLES?.map(s => `
-            <option value="${s.url}" ${window.sidebarState.baseStyle === s.url ? 'selected' : ''}>
-              ${s.name}
-            </option>
+        <div class="row g-2 mb-3" id="base-style-cards">
+          ${window.BASE_STYLES?.map(style => `
+            <div class="col-6">
+              <div class="card base-style-card ${window.sidebarState.baseStyle === style.url ? 'selected' : ''}" 
+                   data-style-url="${style.url}" role="button">
+                <img src="${style.thumbnail || 'static/images/map-thumbnails/' + style.id + '.jpg'}" 
+                     class="card-img-top" alt="${style.name}" 
+                     onerror="this.src='static/images/map-thumbnails/default.jpg'">
+                <div class="card-body p-2 text-center">
+                  <small class="card-title mb-0">${style.name}</small>
+                </div>
+              </div>
+            </div>
           `).join('') ?? ''}
-        </select>
+        </div>
 
-        <label class="form-label">Select Location</label>
+        <label class="form-label">Location</label>
         <select id="location-select" class="form-select mb-2">
           <option value="Select..." ${window.sidebarState.location === 'Select...' ? 'selected' : ''}>Select...</option>
           ${getLocations().map(loc => `
@@ -122,8 +130,8 @@ function getPanelContent(panel) {
             const boundaryType = BOUNDARY_LABEL_TO_TYPE[label];
             const isChecked = window.sidebarState.boundaries[boundaryType] || false;
             return `
-              <div class="form-check">
-                <input class="form-check-input boundary-toggle" type="checkbox" 
+              <div class="form-switch mb-2">
+                <input class="form-check-input boundary-toggle" type="checkbox" role="switch"
                        id="boundary-${boundaryType}" data-type="${boundaryType}"
                        ${isChecked ? 'checked' : ''}>
                 <label class="form-check-label" for="boundary-${boundaryType}">${label}</label>
@@ -312,9 +320,20 @@ function attachGeneralListeners() {
   const map = getMap();
 
   // Base Style Selection
-  document.getElementById('base-style-select')?.addEventListener('change', (e) => {
-    window.sidebarState.baseStyle = e.target.value;
-    setBaseMapStyle(e.target.value);
+  document.querySelectorAll('.base-style-card').forEach(card => {
+    card.addEventListener('click', (e) => {
+      const styleUrl = e.currentTarget.dataset.styleUrl;
+      
+      // Remove selected class from all cards
+      document.querySelectorAll('.base-style-card').forEach(c => c.classList.remove('selected'));
+      
+      // Add selected class to clicked card
+      e.currentTarget.classList.add('selected');
+      
+      // Update state and apply style
+      window.sidebarState.baseStyle = styleUrl;
+      setBaseMapStyle(styleUrl);
+    });
   });
 
   //Location Selection

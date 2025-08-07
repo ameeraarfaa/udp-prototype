@@ -5,20 +5,28 @@ let stateLocations = [];
 
 export const BASE_STYLES = [
   {
+    id: 'default',
     name: 'Default',
     url: 'https://api.maptiler.com/maps/basic-v2/style.json?key=TgrDzodq8E10HppJIC77',
+    thumbnail: 'static/img/map-thumbnails/Default.png'
   },
   {
+    id: 'topographic',
     name: 'Topographic',
     url: 'https://api.maptiler.com/maps/outdoor-v2/style.json?key=TgrDzodq8E10HppJIC77',
+    thumbnail: 'static/img/map-thumbnails/Topographical.png'
   },
   {
+    id: 'satellite',
     name: 'Satellite',
     url: 'https://api.maptiler.com/maps/satellite/style.json?key=TgrDzodq8E10HppJIC77',
+    thumbnail: 'static/img/map-thumbnails/Satellite.png'
   },
   {
+    id: 'canvas-light',
     name: 'Canvas (Light)',
     url: 'https://api.maptiler.com/maps/01985a16-8e74-7344-b1bb-2b87be989046/style.json?key=TgrDzodq8E10HppJIC77',
+    thumbnail: 'static/img/map-thumbnails/Canvas (Light).png'
   }
 ];
 window.BASE_STYLES = BASE_STYLES;

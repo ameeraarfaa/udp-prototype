@@ -25,7 +25,7 @@
     "opacity": 0.5,
     "minzoom": 6
   },
-  
+
   {
     "key": "water",
     "type": "rectangle",
