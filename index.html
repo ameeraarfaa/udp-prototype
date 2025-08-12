@@ -5,13 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Urban Data Platform</title>
 
+  <!-- Embedded CSS Styling -->
   <link rel="stylesheet" href="static/css/base.css">
   <link rel="stylesheet" href="static/css/topbar.css">
   <link rel="stylesheet" href="static/css/sidebar.css">
   <link rel="stylesheet" href="static/css/map.css">
   <link rel="stylesheet" href="static/css/components.css">
   <link rel="stylesheet" href="static/css/active-layers.css">
-  
+  <link rel="stylesheet" href="static/css/feature-tour.css">
+
+  <!-- Intro.js CSS-->
+  <link rel="stylesheet" href="https://unpkg.com/intro.js/minified/introjs.min.css">
+
+  <!--External CSS-->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://unpkg.com/maplibre-gl@3.6.1/dist/maplibre-gl.css" rel="stylesheet">
 </head>
@@ -23,7 +29,9 @@
     <span class="udp-text">Urban Data Platform</span>
 
     <!-- Right side elements -->
-    <button id="topbar-export-btn" class="btn btn-outline-light btn-sm" disabled title="Export Map">
+    <button id="topbar-export-btn" class="btn btn-outline-light btn-sm" disabled title="Export Map"
+      data-intro="Use this button to export your current map view as a high-quality image. Make sure you have some layers active first!" 
+      data-step="6">
       <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M12 5L11.2929 4.29289L12 3.58579L12.7071 4.29289L12 5ZM13 14C13 14.5523 12.5523 15 12 15C11.4477 15 11 14.5523 11 14L13 14ZM6.29289 9.29289L11.2929 4.29289L12.7071 5.70711L7.70711 10.7071L6.29289 9.29289ZM12.7071 4.29289L17.7071 9.29289L16.2929 10.7071L11.2929 5.70711L12.7071 4.29289ZM13 5L13 14L11 14L11 5L13 5Z"/>
         <path d="M5 16L5 17C5 18.1046 5.89543 19 7 19L17 19C18.1046 19 19 18.1046 19 17V16"/>
@@ -40,8 +48,8 @@
     </div>
   </div>
 
-  <div id="sidebar-static">
-    <div class="sidebar-icon" id="icon-general" title="Map Settings">
+  <div id="sidebar-static" data-intro="This sidebar gives you access to all the map tools and settings. Click any icon to expand the panel." data-step="1">
+    <div class="sidebar-icon" id="icon-general" title="Map Settings" data-intro="Change your base map style and select different locations to explore." data-step="2">
       <svg width="24" height="24" fill="none" stroke="#000F9F" stroke-opacity="0.3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <circle cx="16" cy="8" r="2" />
         <line x1="4" y1="8" x2="14" y2="8" />
@@ -51,13 +59,15 @@
         <line x1="10" y1="16" x2="20" y2="16" />
       </svg>
     </div>
-    <div class="sidebar-icon" id="icon-layers" title="Layers">
+    <div class="sidebar-icon" id="icon-layers" title="Layers" data-intro="Here you can add climate and environmental data layers, plus administrative boundaries to your map." data-step="3">
       <svg width="24" height="24" fill="none" stroke="#000F9F" stroke-opacity="0.3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M21 12L12 16L3.00001 12M21 16L12 20L3 16M21 8L12 12L3.00001 8L12 4L21 8Z"/>
       </svg>
     </div>
     <div style="flex-grow:1"></div>
-    <div class="sidebar-icon" id="icon-other-tools" title="Other Tools">
+    <div class="sidebar-icon" id="icon-other-tools" title="Other Tools"
+      data-intro="Access additional tools and features for advanced map analysis." 
+      data-step="7">
       <svg width="24" height="24" fill="none" stroke="#000F9F" stroke-opacity="0.3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <rect x="3" y="3" width="5" height="5"/>
         <rect x="12" y="3" width="5" height="5"/>
@@ -65,7 +75,9 @@
         <rect x="12" y="12" width="5" height="5"/>
       </svg>
     </div>
-    <div class="sidebar-icon" id="icon-tour" title="Feature Tour">
+    <div class="sidebar-icon" id="icon-tour" title="Feature Tour"
+      data-intro="Click here anytime to restart this tour and learn about new features!" 
+      data-step="8">
       <svg width="24" height="24" fill="none" stroke="#000F9F" stroke-opacity="0.3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M12 17H12.01M12 14C12.8906 12.0938 15 12.2344 15 10C15 8.5 14 7 12 7C10.4521 7 9.50325 7.89844 9.15332 9M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z"/>
       </svg>
@@ -74,9 +86,13 @@
 
   <div id="sidebar-expand"></div>
 
-  <div id="map"></div>
+  <div id="map" 
+     data-intro="This is your interactive map! You can pan, zoom, and click on features to get more information. Layers you activate will appear here." 
+     data-step="5"></div>
 
-  <div id="active-layers-tab">
+  <div id="active-layers-tab"
+    data-intro="This panel shows all the currently active data layers. You can adjust opacity, reorder layers by dragging, and reset everything here." 
+    data-step="4">
     <span class="tab-label">Active Layers</span>
   </div>
 
@@ -88,7 +104,7 @@
     <div id="active-layers-content"></div>
     <button id="reset-map-btn" class="btn btn-secondary reset-btn">Reset Map</button>
   </div>
-
+  <script src="https://unpkg.com/intro.js/minified/intro.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://unpkg.com/maplibre-gl@3.6.1/dist/maplibre-gl.js"></script>
   <script type="module">
@@ -96,13 +112,16 @@
   import { setupTopbar } from './static/js/topbar.js';
   import { initMap } from './static/js/map-init.js'; 
   import { renderActiveLayersPanel } from './static/js/active-layers.js';
+  import { initialiseFeatureTour } from './static/js/feature-tour.js';
   
   document.addEventListener('DOMContentLoaded', async () => {
     try {
       console.log('🚀 Initializing application...');
       
-      // Check if maplibregl is available
+      // Check if libraries are available
       console.log('MapLibre GL available:', !!window.maplibregl);
+      console.log('Intro.js available:', !!window.introJs);
+      console.log('Bootstrap available:', !!window.bootstrap);
       
       // Initialize Map
       await initMap();
@@ -118,6 +137,9 @@
       renderActiveLayersPanel();
       console.log('✅ Active Layers panel setup');
       
+      //Setup Feature Tour
+      initialiseFeatureTour();
+      console.log('✅ Feature tour initialized');
     } catch (error) {
       console.error('❌ Error during initialization:', error);
     }

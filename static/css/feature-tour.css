@@ -1,0 +1,78 @@
+/* Custom styling for the tour tooltips */
+.udp-tour-tooltip .introjs-tooltip {
+  background: #ffffff;
+  border: 1px solid #000F9F;
+  border-radius: 11px;
+  box-shadow: 0 8px 24px rgba(0, 15, 159, 0.15);
+  font-family: 'NeueHaasGrotTextRoman', sans-serif;
+}
+
+.udp-tour-tooltip .introjs-tooltip-header {
+  background: #000F9F;
+  color: white;
+  border-radius: 11px 11px 0 0;
+  padding: 12px 16px;
+  font-weight: 500;
+}
+
+.udp-tour-tooltip .introjs-tooltiptext {
+  padding: 16px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #333;
+}
+
+.udp-tour-tooltip .introjs-button {
+  background: none;
+  color: lightblue;
+  stroke-width: 2px;
+  padding: 4px 16px;
+  font-size: 15px;
+  font-weight: 700;
+  transition: background 0.2s;
+}
+
+.udp-tour-tooltip .introjs-button:hover {
+  background: none;
+  color: blue;
+  transform: translateY(-1px);
+}
+
+.udp-tour-tooltip .introjs-skipbutton {
+  background: transparent;
+  color: lightgrey;
+  padding: 6px 5px;
+  min-width: 36px; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.udp-tour-tooltip .introjs-skipbutton:hover {
+  background: transparent;
+  color: white;        
+}
+.udp-tour-tooltip .introjs-progressbar {
+  background: #000F9F;
+}
+
+/* Highlight styling */
+.introjs-helperLayer {
+  box-shadow: 0 0 0 4px rgba(0, 15, 159, 0.2);
+  border-radius: 8px;
+}
+
+.introjs-overlay {
+  background: rgba(252, 252, 252, 0.4);
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .udp-tour-tooltip .introjs-tooltip {
+    max-width: 90vw;
+  }
+  
+  .udp-tour-tooltip .introjs-tooltiptext {
+    font-size: 13px;
+  }
+}
