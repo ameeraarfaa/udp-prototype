@@ -1,0 +1,128 @@
+/* Sidebar static and expandable sections */
+#sidebar-static {
+  position: fixed;
+  top: 64px;
+  left: 0;
+  width: 60px;
+  height: calc(100vh - 64px);
+  background: #fff;
+  border-right: 1px solid #eee;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 24px;
+  z-index: 20;
+  box-shadow: 2px 0 8px rgba(0,0,0,0.03);
+}
+
+.sidebar-icon {
+  width: 32px;
+  height: 32px;
+  margin-bottom: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background 0.2s;
+}
+
+.sidebar-icon:hover, 
+.sidebar-icon.active {
+  background: #e9ecef;
+}
+
+.sidebar-icon svg {
+  stroke: #000F9F;
+  stroke-opacity: 0.3;
+  transition: stroke-opacity 0.2s;
+}
+
+.sidebar-icon.selected svg {
+  stroke-opacity: 1;
+}
+
+/* Sidebar collapse button */
+.sidebar-collapse-btn {
+  position: absolute;
+  top: 50%;
+  right: -20px;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  background: rgba(0, 15, 159, 0.1);
+  border: 1px solid rgba(0, 15, 159, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1002;
+  transition: all 0.2s ease;
+  opacity: 0;
+  visibility: hidden;
+  backdrop-filter: blur(4px);
+  box-shadow: 0 2px 8px rgba(0, 15, 159, 0.15);
+}
+
+#sidebar-expand.expanded .sidebar-collapse-btn {
+  opacity: 1;
+  visibility: visible;
+  transition-delay: 0.3s;
+}
+
+.sidebar-collapse-btn:hover {
+  background: rgba(0, 15, 159, 0.2);
+  border-color: rgba(0, 15, 159, 0.4);
+  transform: translateY(-50%) scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 15, 159, 0.25);
+}
+
+.sidebar-collapse-btn svg {
+  width: 16px;
+  height: 16px;
+  stroke: #000F9F;
+  stroke-opacity: 0.7;
+  transition: stroke-opacity 0.2s ease;
+}
+
+.sidebar-collapse-btn:hover svg {
+  stroke-opacity: 1;
+}
+
+#sidebar-expand {
+  position: fixed;
+  top: 64px;
+  left: 60px;
+  width: 0;
+  height: calc(100vh - 64px);
+  background: #fff;
+  border-right: 1px solid #eee;
+  box-shadow: 2px 0 8px rgba(0,0,0,0.03);
+  z-index: 21;
+  overflow-x: hidden;
+  transition: width 0.2s;
+}
+
+#sidebar-expand.expanded {
+  width: 300px;
+  padding: 1rem;
+}
+
+.accordion-button span {
+  font-size: 0.9rem;
+}
+
+/* Legacy sidebar support */
+#sidebar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 300px;
+  height: 100%;
+  background: #f8f9fa;
+  padding: 1rem;
+  overflow-y: auto;
+  z-index: 1000;
+  border-right: 1px solid #ddd;
+}

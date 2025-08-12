@@ -6,6 +6,27 @@ import { addFloodCountsToPolygons, showFloodChoropleth } from './choropleth.js';
 import { renderActiveLayersPanel, syncActiveOverlaysFromSidebar } from './active-layers.js';
 import { normaliseProperties } from './boundaryNormaliser.js';
 
+//Initialise Sidebar State
+window.sidebarState = {
+  baseStyle: window.BASE_STYLES?.[0]?.url || 'https://api.maptiler.com/maps/basic-v2/style.json?key=TgrDzodq8E10HppJIC77',
+  location: 'Select...',
+  layers: {
+    'flood': false,
+    'flood-frequency': false,
+    'flood-density': false,
+    'lst': false
+  },
+  boundaries: {
+    'state': false,
+    'district': false,
+    'subdistrict': false,
+    'parlimen': false,
+    'dun': false
+  }
+};
+
+console.log('Sidebar state initialised:', window.sidebarState);
+
 // Maps UI boundary labels to internal type keys
 const BOUNDARY_LABEL_TO_TYPE = {
   'State': 'state',
@@ -73,14 +94,15 @@ const BOUNDARY_LAYER_DISABLE_CONFIG = {
   }
 };
 
-window.activeBoundaryType = 'state'; // Tracks active boundary type
+// Tracks active boundary type
+window.activeBoundaryType = 'state'; 
 
 const icons = [
   { id: 'icon-general', panel: 'general' },
   { id: 'icon-layers', panel: 'layers' },
-  { id: 'icon-account', panel: 'account' },
   { id: 'icon-active-layers', panel: 'active-layers' },
-  { id: 'icon-about', panel: 'about' }
+  { id: 'icon-other-tools', panel: 'other-tools' },
+  { id: 'icon-tour', panel: 'tour' }
 ];
 
 let expanded = null;
@@ -97,7 +119,7 @@ function getPanelContent(panel) {
     return `
       <h5>Map Settings</h5>
       <div class="mb-3">
-        <label class="form-label">Base Map Style</label>
+        <label class="form-label fw-bold">Base Map Style</label>
         <div class="row g-2 mb-3" id="base-style-cards">
           ${window.BASE_STYLES?.map(style => `
             <div class="col-6">
@@ -114,7 +136,7 @@ function getPanelContent(panel) {
           `).join('') ?? ''}
         </div>
 
-        <label class="form-label">Location</label>
+        <label class="form-label fw-bold">Location</label>
         <select id="location-select" class="form-select mb-2">
           <option value="Select..." ${window.sidebarState.location === 'Select...' ? 'selected' : ''}>Select...</option>
           ${getLocations().map(loc => `
@@ -124,7 +146,7 @@ function getPanelContent(panel) {
           `).join('')}
         </select>
 
-        <label class="form-label mt-3">Boundaries</label>
+        <label class="form-label mt-3 fw-bold">Boundary</label>
         <div id="boundary-toggles" class="mb-2">
           ${boundaryLabels.map(label => {
             const boundaryType = BOUNDARY_LABEL_TO_TYPE[label];
@@ -252,16 +274,59 @@ function getPanelContent(panel) {
           </div>
 
         </div>
-        <button id="download-map" class="btn btn-secondary w-100 mt-4" disabled>Export Map (.jpeg)</button>
       </div>
     `;
   }
+  
+  if (panel === 'other-tools') {
+    return `
+      <h5>Other Tools</h5>
+      <p class="text-muted mb-4">Explore other tools on the Urban Data Platform.</p>
+      
+      <div class="row g-3">
+        <!-- Resilient Places Index -->
+        <div class="col-12">
+          <div class="card h-100 tool-card">
+            <div class="card-body">
+              <h6 class="card-title text-primary">Resilient Places Index</h6>
+              <p class="card-text text-muted">Understand and compare your place resilience.</p>
+              <button class="btn btn-outline-primary btn-sm" onclick="openTool('resilient-places')">
+                Launch Tool
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Downtown KL Movement Economy -->
+        <div class="col-12">
+          <div class="card h-100 tool-card coming-soon">
+            <div class="card-body">
+              <h6 class="card-title text-primary">Downtown KL Movement Economy</h6>
+              <p class="card-text text-muted">Model and analyse pedestrian movement in Downtown Kuala Lumpur.</p>
+              <button class="btn btn-secondary btn-sm" disabled>
+                Coming Soon
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Community Wellbeing Diagnostic Tool -->
+        <div class="col-12">
+          <div class="card h-100 tool-card coming-soon">
+            <div class="card-body">
+              <h6 class="card-title text-primary">Community Wellbeing Diagnostic Tool</h6>
+              <p class="card-text text-muted">Diagnose and assess community wellbeing in PPRs.</p>
+              <button class="btn btn-secondary btn-sm" disabled>
+                Coming Soon
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+}
 
-  if (panel === 'Account') {
-    return `<h5>Account</h5><div class="text-muted">No account options yet.</div>`;
-  }
-
-  if (panel === 'about') {
+  if (panel === 'tour') {
     return `
       <h5>About the Project</h5>
       <div class="text-muted">
@@ -280,27 +345,26 @@ function showPanel(panel) {
   sidebarExpand.classList.add('expanded');
   sidebarExpand.innerHTML = getPanelContent(panel);
 
+  document.body.classList.add('sidebar-expanded');
+
   if (panel === 'general') {
     attachGeneralListeners();
     //populateLocationDropdown();
   }
-
+  
   if (panel === 'layers') attachLayerPanelListeners();
 
   if (panel === 'active-layers') {
     renderActiveLayersPanel('active-layers-panel');
-  }
-
-  // Export button logic
-  const downloadButton = document.getElementById('download-map');
-  if (downloadButton) {
-    downloadButton.addEventListener('click', exportVisibleMap);
   }
 }
 
 function hidePanel() {
   const sidebarExpand = document.getElementById('sidebar-expand');
   sidebarExpand.classList.remove('expanded');
+
+  document.body.classList.remove('sidebar-expanded');
+  
   sidebarExpand.innerHTML = '';
 }
 
@@ -319,10 +383,14 @@ function unlockPanel() {
 function attachGeneralListeners() {
   const map = getMap();
 
-  // Base Style Selection
+  // Base Style Selection - UPDATED to preserve layers
   document.querySelectorAll('.base-style-card').forEach(card => {
-    card.addEventListener('click', (e) => {
+    card.addEventListener('click', async (e) => {
       const styleUrl = e.currentTarget.dataset.styleUrl;
+      
+      // Store current layer states before changing style
+      const currentLayerStates = { ...window.sidebarState.layers };
+      const currentBoundaryStates = { ...window.sidebarState.boundaries };
       
       // Remove selected class from all cards
       document.querySelectorAll('.base-style-card').forEach(c => c.classList.remove('selected'));
@@ -332,24 +400,34 @@ function attachGeneralListeners() {
       
       // Update state and apply style
       window.sidebarState.baseStyle = styleUrl;
-      setBaseMapStyle(styleUrl);
+      
+      // Apply the new base map style
+      await setBaseMapStyle(styleUrl);
+      
+      // Wait a moment for the style to load, then restore layers
+      setTimeout(async () => {
+        await restoreLayersAfterStyleChange(currentLayerStates, currentBoundaryStates);
+      }, 500);
     });
   });
 
-  //Location Selection
+  // Location Selection - UPDATED to preserve other parameters
   document.getElementById('location-select')?.addEventListener('change', async (e) => {
     const selectedState = e.target.value;
-    window.sidebarState.location = selectedState; // Save to state
+    
+    // PRESERVE: Only update location in state, keep everything else
+    window.sidebarState.location = selectedState;
     
     if (selectedState && selectedState !== 'Select...') {
       flyToLocation(selectedState);
       await updateBoundaryLayersForState(selectedState);
 
-      //Boundary Toggles
+      // Update boundary toggle states based on location constraints
       document.querySelectorAll('.boundary-toggle').forEach(toggle => {
         const type = toggle.dataset.type;
         const label = document.querySelector(`label[for="boundary-${type}"]`);
         const config = BOUNDARY_LAYER_DISABLE_CONFIG[type];
+        
         if (config && config.states.includes(selectedState)) {
           toggle.disabled = true;
           toggle.checked = false;
@@ -362,63 +440,193 @@ function attachGeneralListeners() {
           toggle.disabled = false;
           toggle.title = "";
           if (label) label.title = "";
+          // PRESERVE: Keep the existing boundary state if it was enabled
+          toggle.checked = window.sidebarState.boundaries[type] || false;
         }
       });
+      
+      // PRESERVE: Re-enable boundaries and layers that were active
+      await preserveActiveLayersAndBoundaries(selectedState);
     }
   });
 
+  // Boundary Toggle Selection - UPDATED to require location first
   document.querySelectorAll('.boundary-toggle').forEach(toggle => {
     toggle.addEventListener('change', async (e) => {
+      const selectedLocation = document.getElementById('location-select')?.value;
+      
+      // CHECK: Require location selection first
+      if (!selectedLocation || selectedLocation === 'Select...') {
+        e.preventDefault();
+        e.target.checked = false;
+        
+        // Show user-friendly message
+        showLocationRequiredMessage();
+        return;
+      }
+      
       const type = e.target.dataset.type;
       const checked = e.target.checked;
-      const state = document.getElementById('location-select')?.value;
       const map = getMap();
 
-      // Save to state
+      // PRESERVE: Only update the specific boundary type
       window.sidebarState.boundaries[type] = checked;
       
-      // Clear other boundary states when one is selected
+      // Clear other boundary states when one is selected (mutual exclusion)
       if (checked) {
         Object.keys(window.sidebarState.boundaries).forEach(key => {
-          if (key !== type) window.sidebarState.boundaries[key] = false;
+          if (key !== type) {
+            window.sidebarState.boundaries[key] = false;
+            // Update UI to reflect state
+            const otherToggle = document.querySelector(`input[data-type="${key}"]`);
+            if (otherToggle) otherToggle.checked = false;
+          }
         });
       }
 
       // Always remove all boundary layers before adding a new one
-      Object.keys(BOUNDARY_LABEL_TO_TYPE).forEach(label => {
-        const boundaryType = BOUNDARY_LABEL_TO_TYPE[label];
-        const sourceId = `boundary-source-${boundaryType}`;
-        const layerId = `boundary-layer-${boundaryType}`;
-        if (map.getLayer(layerId)) map.removeLayer(layerId);
-        if (map.getSource(sourceId)) map.removeSource(sourceId);
-      });
+      await clearAllBoundaryLayers();
 
-      if (checked && state && state !== 'Select...') {
-        // Uncheck all other boundary toggles
-        document.querySelectorAll('.boundary-toggle').forEach(otherToggle => {
-          if (otherToggle !== e.target) otherToggle.checked = false;
-        });
-
-        window.activeBoundaryType = type; // Track the current boundary type
+      if (checked) {
+        window.activeBoundaryType = type;
         const { loadBoundaryLayer } = await import('./boundaries.js');
-        loadBoundaryLayer(map, type, state);
+        await loadBoundaryLayer(map, type, selectedLocation);
 
         // If choropleth is active, update it
         const choroplethToggle = document.getElementById('toggle-flood-choropleth');
         if (choroplethToggle && choroplethToggle.checked) {
-          await showFloodCountChoropleth(type, state);
+          await showFloodCountChoropleth(type, selectedLocation);
         }
       }
     });
 
-    // Show tooltip on disabled toggle click
+    // Show tooltip on disabled toggle click - UPDATED with better UX
     toggle.addEventListener('click', (e) => {
       if (e.target.disabled && e.target.title) {
-        alert(e.target.title);
+        showLocationRequiredMessage(e.target.title);
         e.preventDefault();
       }
     });
   });
+}
+
+// Add these helper functions after the attachGeneralListeners function:
+
+async function preserveActiveLayersAndBoundaries(newLocation) {
+  const map = getMap();
+  
+  try {
+    // Preserve and restore active boundary
+    const activeBoundaryType = Object.keys(window.sidebarState.boundaries)
+      .find(type => window.sidebarState.boundaries[type]);
+    
+    if (activeBoundaryType) {
+      const { loadBoundaryLayer } = await import('./boundaries.js');
+      await loadBoundaryLayer(map, activeBoundaryType, newLocation);
+    }
+    
+    // Preserve and restore active layers
+    const { loadLayersFromConfig } = await import('./layer-controls.js');
+    await loadLayersFromConfig(map, newLocation);
+    
+    // Restore layer visibility based on saved state
+    Object.entries(window.sidebarState.layers).forEach(([layerKey, isVisible]) => {
+      if (isVisible) {
+        const layerId = `${layerKey}-layer`;
+        if (map.getLayer(layerId)) {
+          map.setLayoutProperty(layerId, 'visibility', 'visible');
+        }
+      }
+    });
+    
+  } catch (error) {
+    console.error('❌ Error preserving layers and boundaries:', error);
+  }
+}
+
+async function clearAllBoundaryLayers() {
+  const map = getMap();
+  
+  Object.keys(BOUNDARY_LABEL_TO_TYPE).forEach(label => {
+    const boundaryType = BOUNDARY_LABEL_TO_TYPE[label];
+    const sourceId = `boundary-source-${boundaryType}`;
+    const layerId = `boundary-layer-${boundaryType}`;
+    if (map.getLayer(layerId)) map.removeLayer(layerId);
+    if (map.getSource(sourceId)) map.removeSource(sourceId);
+  });
+}
+
+function showLocationRequiredMessage(customMessage = null) {
+  const message = customMessage || "Please select a location first before choosing boundary types.";
+  
+  // Notification
+  const notification = document.createElement('div');
+  notification.className = 'alert alert-warning alert-dismissible fade show position-fixed';
+  notification.style.cssText = `
+    top: 20px; 
+    right: 20px; 
+    z-index: 9999; 
+    min-width: 300px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  `;
+  notification.innerHTML = `
+    <strong>Location Required!</strong><br>
+    ${message}
+    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+  `;
+  
+  document.body.appendChild(notification);
+  
+  // Auto-remove after 4 seconds
+  setTimeout(() => {
+    if (notification.parentNode) {
+      notification.parentNode.removeChild(notification);
+    }
+  }, 4000);
+}
+
+async function restoreLayersAfterStyleChange(layerStates, boundaryStates) {
+  const map = getMap();
+  
+  try {
+    // Re-import layer controls to reload layers
+    const { loadLayersFromConfig } = await import('./layer-controls.js');
+    
+    // GET THE ACTUAL CURRENT LOCATION - NOT THE DEFAULT
+    const currentLocation = window.sidebarState.location;
+    const actualLocation = (currentLocation && currentLocation !== 'Select...') ? currentLocation : null;
+    
+    console.log('🔄 Restoring layers with location:', actualLocation);
+    
+    // Reload all layers with the correct location context
+    await loadLayersFromConfig(map, actualLocation);
+    
+    // Restore layer visibility states
+    Object.entries(layerStates).forEach(([layerKey, isVisible]) => {
+      if (isVisible) {
+        const layerId = `${layerKey}-layer`;
+        if (map.getLayer(layerId)) {
+          map.setLayoutProperty(layerId, 'visibility', 'visible');
+          console.log('✅ Restored layer visibility:', layerId);
+        } else {
+          console.warn('⚠️ Layer not found during restore:', layerId);
+        }
+      }
+    });
+    
+    // Restore boundary layers
+    const activeBoundaryType = Object.keys(boundaryStates).find(type => boundaryStates[type]);
+    if (activeBoundaryType && actualLocation) {
+      const { loadBoundaryLayer } = await import('./boundaries.js');
+      await loadBoundaryLayer(map, activeBoundaryType, actualLocation);
+      window.activeBoundaryType = activeBoundaryType;
+    }
+    
+    console.log('🔄 Layers restored after style change');
+    
+  } catch (error) {
+    console.error('❌ Error restoring layers after style change:', error);
+  }
 }
 
 async function updateBoundaryLayersForState(state) {
@@ -429,6 +637,7 @@ async function updateBoundaryLayersForState(state) {
     loadBoundaryLayer(map, type, state);
   });
 }
+
 
 export function attachLayerPanelListeners() {
   console.log('Attaching layer panel listeners...');
@@ -442,6 +651,24 @@ export function attachLayerPanelListeners() {
   // Attach new listeners
   document.querySelectorAll('.map-toggle').forEach(toggle => {
     toggle.addEventListener('change', (e) => {
+      // CHECK: Get location from sidebar state instead of DOM element
+      const selectedLocation = window.sidebarState?.location;
+      
+      console.log('🔍 Location check:', {
+        fromState: selectedLocation,
+        isValidLocation: selectedLocation && selectedLocation !== 'Select...'
+      });
+      
+      // Location selection check 
+      if (!selectedLocation || selectedLocation === 'Select...') {
+        e.preventDefault();
+        e.target.checked = false;
+        
+        // Show user-friendly message for data overlays
+        showLocationRequiredMessage("Please select a location first before enabling data layers.");
+        return;
+      }
+      
       const layerKey = e.target.dataset.layer;
       const layerId = `${layerKey}-layer`;
       const map = getMap();
@@ -453,27 +680,61 @@ export function attachLayerPanelListeners() {
         layerKey,
         layerId,
         checked: e.target.checked,
-        layerExists: !!map.getLayer(layerId)
+        layerExists: !!map.getLayer(layerId),
+        location: selectedLocation
       });
 
       if (map.getLayer(layerId)) {
         const visibility = e.target.checked ? 'visible' : 'none';
         map.setLayoutProperty(layerId, 'visibility', visibility);
-        console.log('Set visibility to:', visibility, 'for layer:', layerId);
+        console.log('✅ Set visibility to:', visibility, 'for layer:', layerId);
         
         // Update export button and active layers
         updateExportButtonState();
         syncActiveOverlaysFromSidebar();
       } else {
-        console.error('Layer not found:', layerId);
+        console.error('❌ Layer not found:', layerId);
+      }
+    });
+
+    // Click listener for disabled toggles
+    toggle.addEventListener('click', (e) => {
+      const selectedLocation = window.sidebarState?.location;
+      
+      if (!selectedLocation || selectedLocation === 'Select...') {
+        showLocationRequiredMessage("Please select a location first before enabling data layers.");
+        e.preventDefault();
       }
     });
   });
   
-  console.log('Layer panel listeners attached to', document.querySelectorAll('.map-toggle').length, 'toggles');
+  console.log('📎 Layer panel listeners attached to', document.querySelectorAll('.map-toggle').length, 'toggles');
 }
 
 export function setupSidebarUI() {
+
+  // Initialise sidebar state if not already initialised
+  if (!window.sidebarState) {
+    window.sidebarState = {
+      baseStyle: window.BASE_STYLES?.[0]?.url || 'https://api.maptiler.com/maps/basic-v2/style.json?key=TgrDzodq8E10HppJIC77',
+      location: 'Select...',
+      layers: {
+        'flood': false,
+        'flood-frequency': false,
+        'flood-density': false,
+        'lst': false
+      },
+      boundaries: {
+        'state': false,
+        'district': false,
+        'subdistrict': false,
+        'parlimen': false,
+        'dun': false
+      }
+    };
+    console.log('✅ Sidebar state initialized in setupSidebarUI:', window.sidebarState);
+  }
+  
   const sidebarExpand = document.getElementById('sidebar-expand');
   if (!sidebarExpand) {
     console.warn('Sidebar container not found. Delaying setup.');
@@ -512,11 +773,6 @@ export function setupSidebarUI() {
     console.error('Failed to populate dropdown:', err);
   }
 
-  // Attach export button logic
-  const exportBtn = document.getElementById('download-map');
-  if (exportBtn) {
-    exportBtn.addEventListener('click', exportVisibleMap);
-  }
 }
 
 async function showFloodCountChoropleth(boundaryType, selectedState) {

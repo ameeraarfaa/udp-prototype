@@ -77,6 +77,46 @@ h5 {
   font-weight: 550;
 }
 
+.topbar-account-icon {
+  position: absolute;
+  right: 40px; 
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;  
+  border-radius: 8px; 
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 1001;
+}
+
+.topbar-account-icon:hover {
+  background: #e9ecef; 
+  transform: translateY(-50%) scale(1.05);
+}
+
+.topbar-account-icon svg {
+  stroke: #000F9F; 
+  stroke-opacity: 0.3; 
+  stroke-width: 2;
+  transition: stroke-opacity 0.2s;
+}
+
+.topbar-account-icon:hover svg {
+  stroke-opacity: 1; 
+}
+
+.topbar-account-icon.selected {
+  background: #e9ecef; 
+}
+
+.topbar-account-icon.selected svg {
+  stroke-opacity: 1; 
+}
+
 #sidebar-static {
   position: fixed;
   top: 64px;
@@ -337,4 +377,62 @@ h5 {
   .base-style-card .card-title {
     font-size: 0.7rem;
   }
+}
+
+/* Tool Cards Styling */
+.tool-card {
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.tool-card:hover {
+  border-color: #000F9F;
+  box-shadow: 0 4px 12px rgba(0, 15, 159, 0.1);
+  transform: translateY(-2px);
+}
+
+/* Disable hover for coming soon cards */
+.tool-card.coming-soon:hover {
+  border-color: #e9ecef;
+  box-shadow: none;
+  transform: none;
+}
+
+.tool-card .card-title {
+  color: #000F9F;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.tool-card .card-text {
+  font-size: 0.9rem;
+  line-height: 1.4;
+  margin-bottom: 12px;
+}
+
+/* Active/Available tool button styling */
+.tool-card .btn-outline-primary {
+  border-color: #000F9F;
+  color: #000F9F;
+  font-size: 0.8rem;
+  padding: 6px 12px;
+}
+
+.tool-card .btn-outline-primary:hover {
+  background-color: #000F9F;
+  border-color: #000F9F;
+  color: white;
+}
+
+/* Coming Soon/Disabled button styling */
+.tool-card .btn-secondary:disabled {
+  background-color: transparent;
+  border-color: #6c757d;
+  color: #6c757d;
+  font-size: 0.8rem;
+  padding: 6px 12px;
+  cursor: not-allowed;
+  opacity: 0.7;
 }

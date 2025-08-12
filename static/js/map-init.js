@@ -88,18 +88,16 @@ export function setBaseMapStyle(styleUrl) {
   if (mapInstance && styleUrl) {
     mapInstance.setStyle(styleUrl);
 
-    // Use 'styledata' event instead of 'style.load' - more reliable
     mapInstance.once('styledata', async (e) => {
-      // Only proceed if this is the final styledata event (when style is fully loaded)
       if (e.dataType === 'style') {
         console.log('✅ styledata event fired for:', styleUrl);
         
         // Get selected state from dropdown
         const selectedState = document.getElementById('location-select')?.value;
-        console.log('📍 Selected state:', selectedState);
+        console.log('📍 Selected state:', selectedState); //debugging
 
         // Re-add overlays (flood points, heatmaps, etc.)
-        console.log('🔄 Re-adding overlays...');
+        console.log('🔄 Re-adding overlays...'); //debugginng
         const { loadLayersFromConfig } = await import('./layer-controls.js');
         await loadLayersFromConfig(mapInstance, selectedState);
 
@@ -110,12 +108,10 @@ export function setBaseMapStyle(styleUrl) {
           await updateBoundaryLayersForState(selectedState);
         }
 
-        // THEN re-attach layer toggle event handlers (after boundaries are loaded)
         console.log('🔄 Re-attaching event handlers...');
         const { attachLayerPanelListeners } = await import('./sidebar.js');
         attachLayerPanelListeners();
 
-        // FINALLY restore visibility for any checked toggles
         setTimeout(() => {
           document.querySelectorAll('.map-toggle:checked').forEach(toggle => {
             const layerKey = toggle.dataset.layer;
@@ -133,9 +129,9 @@ export function setBaseMapStyle(styleUrl) {
           import('./active-layers.js').then(({ syncActiveOverlaysFromSidebar }) => {
             syncActiveOverlaysFromSidebar();
           });
-        }, 200); // Increase timeout slightly
+        }, 200); 
 
-        console.log('🎉 Style change complete and handlers re-attached');
+        console.log('🎉 Style change complete and handlers re-attached'); //debugging
       }
     });
   }

@@ -1,0 +1,40 @@
+/* Base styles, fonts, and global elements */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'NeueHaasGrotTextRoman', sans-serif;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: #f8f9fa;
+}
+
+@font-face {
+  font-family: 'NeueHaasGrotTextRoman';
+  src: url('../brand/font/NeueHaasGrotText-55Roman-Trial.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'NeueHaasGrotTextMedium';
+  src: url('../brand/font/NeueHaasGrotText-65Medium-Trial.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+h5 {
+  font-family: 'NeueHaasGrotTextMedium', sans-serif;
+  font-weight: 500;
+  color: #000F9F;
+  margin-bottom: 16px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 576px) {
+  /* Global responsive styles */
+}

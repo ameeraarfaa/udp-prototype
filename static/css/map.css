@@ -1,0 +1,15 @@
+/* Map container and related positioning */
+#map {
+  position: absolute;
+  top: 56px;
+  left: 60px;
+  width: calc(100vw - 60px);
+  height: calc(100vh - 56px);
+  z-index: 1;
+  transition: left 0.2s, width 0.2s;
+}
+
+#sidebar-expand.expanded ~ #map {
+  left: 360px;
+  width: calc(100vw - 360px);
+}
